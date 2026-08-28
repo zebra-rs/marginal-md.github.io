@@ -1,152 +1,150 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<title>Download Marginal</title>
+<meta name="description" content="Marginal 1.0 for macOS, Windows, and Linux is being prepared for release. Universal macOS build, x86_64 and aarch64 Linux, Windows 10 and later.">
+<link rel="canonical" href="https://marginal.md/download.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marginal">
+<meta property="og:title" content="Download Marginal">
+<meta property="og:description" content="Marginal 1.0 for macOS, Windows, and Linux is being prepared for release.">
+<meta property="og:url" content="https://marginal.md/download.html">
+<meta property="og:image" content="https://marginal.md/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1a1a1e">
+<link rel="icon" href="/assets/marginal-icon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="stylesheet" href="/assets/site.css">
+<script>
+document.documentElement.classList.add('js');
+try {
+  var q = new URLSearchParams(location.search).get('theme');
+  var t = q === 'light' || q === 'dark' ? q : localStorage.getItem('theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+} catch (e) {}
+</script>
 </head>
 <body>
-<x-dc>
-<helmet>
-<link rel="stylesheet" href="_ds/marginal-d08766a5-7a7e-4fe5-804e-2014db33154d/tokens/marginal.css">
-<link rel="stylesheet" href="_ds/marginal-d08766a5-7a7e-4fe5-804e-2014db33154d/styles.css">
-<script src="_ds/marginal-d08766a5-7a7e-4fe5-804e-2014db33154d/_ds_bundle.js"></script>
-<style>
-  html, body { margin: 0; padding: 0; background: var(--bg); }
-  * { box-sizing: border-box; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { color: #e4572e; }
-</style>
-</helmet>
 
-<div style="background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; font-size: 13px; line-height: 1.6; min-height: 100vh">
+<header class="site-header">
+  <div class="wrap-narrow header-row">
+    <a href="/" class="brand">
+      <img src="/assets/marginal-icon.svg" width="22" height="22" alt="">
+      <span>Marginal</span>
+    </a>
+    <div class="header-spacer"></div>
+    <a href="/" style="color: rgb(250 246 239 / 0.66); font-size: 12px">← Back to site</a>
+    <button id="theme-toggle" class="btn-ghost-dark" title="Toggle light and dark">Dark</button>
+  </div>
+</header>
 
-  <header style="background: #1a1a1e; border-bottom: 1px solid rgba(250,246,239,0.12)">
-    <div style="max-width: 900px; margin: 0 auto; padding: 0 32px; height: 56px; display: flex; align-items: center; gap: 20px">
-      <a href="Marginal Site.dc.html" style="display: flex; align-items: center; gap: 10px; color: #faf6ef">
-        <img src="assets/marginal-icon.svg" width="22" height="22" alt="Marginal" style="display: block; border-radius: 5px">
-        <span style="font-size: 14px; font-weight: 600; letter-spacing: -0.01em">Marginal</span>
-      </a>
-      <div style="flex: 1"></div>
-      <a href="Marginal Site.dc.html" style="color: rgba(250,246,239,0.66); font-size: 12px">← Back to site</a>
-      <button onClick="{{ toggleTheme }}" style="background: transparent; border: 1px solid rgba(250,246,239,0.2); color: rgba(250,246,239,0.8); border-radius: 6px; height: 28px; padding: 0 10px; font: inherit; font-size: 12px; cursor: pointer">{{ themeLabel }}</button>
+<section class="wrap-narrow" style="padding-top: 64px">
+  <h1 style="font-size: 34px; letter-spacing: -0.03em; font-weight: 620; margin: 0 0 10px">Download Marginal</h1>
+  <p class="section-sub" style="max-width: 60ch">Version 1.0 is being prepared for release — the builds below will appear here as soon as it ships. Same Rust engine on every platform; settings carry across machines.</p>
+
+  <div class="rec-card">
+    <div class="rec-body">
+      <div class="rec-k">Recommended for you</div>
+      <div class="rec-title" id="rec-title">Your platform</div>
+      <div class="rec-meta mono" id="rec-meta">Marginal 1.0</div>
     </div>
-  </header>
+    <span class="soon-chip">Available at launch</span>
+  </div>
 
-  <section style="max-width: 900px; margin: 0 auto; padding: 64px 32px 0">
-    <h1 style="font-size: 34px; letter-spacing: -0.03em; font-weight: 620; margin: 0 0 10px">Download Marginal</h1>
-    <p style="font-size: 14px; color: var(--muted); margin: 0 0 32px; max-width: 60ch">Version {{ version }}, released {{ released }}. Same Rust engine on every platform; settings and rule files carry across machines.</p>
-
-    <div style="border: 1px solid #e4572e; border-radius: 10px; padding: 22px 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; background: var(--chrome-bg); margin-bottom: 32px">
-      <div style="flex: 1; min-width: 240px">
-        <div style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #e4572e; font-weight: 600; margin-bottom: 4px">Recommended for you</div>
-        <div style="font-size: 18px; font-weight: 620; letter-spacing: -0.02em">{{ primary.title }}</div>
-        <div style="font-size: 12px; color: var(--muted); font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace; margin-top: 3px">{{ primary.meta }}</div>
+  <div class="builds" id="builds">
+    <div class="build-row" data-os="mac">
+      <div>
+        <div class="build-os">macOS</div>
+        <div class="build-req">macOS 12 or later</div>
       </div>
-      <a href="#builds" style="background: #e4572e; color: #faf6ef; border-radius: 8px; padding: 12px 22px; font-size: 14px; font-weight: 600">{{ primary.cta }}</a>
+      <div class="build-files">
+        <div class="build-file mono">Marginal.dmg <span class="size">universal — Apple silicon and Intel</span></div>
+      </div>
+      <div class="build-pkg mono">signed &amp; notarized</div>
     </div>
-
-    <div id="builds" style="display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden">
-      <sc-for list="{{ builds }}" as="b" hint-placeholder-count="3">
-        <div style="background: var(--bg); padding: 20px 24px; display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: 20px; align-items: center">
-          <div>
-            <div style="font-size: 14px; font-weight: 600">{{ b.os }}</div>
-            <div style="font-size: 11.5px; color: var(--muted)">{{ b.req }}</div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 5px">
-            <sc-for list="{{ b.files }}" as="f" hint-placeholder-count="2">
-              <div style="display: flex; gap: 10px; align-items: baseline; font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px">
-                <a href="#builds">{{ f.name }}</a>
-                <span style="color: var(--muted); font-size: 11px">{{ f.size }}</span>
-              </div>
-            </sc-for>
-          </div>
-          <div style="font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; color: var(--muted)">{{ b.pkg }}</div>
-        </div>
-      </sc-for>
+    <div class="build-row" data-os="win">
+      <div>
+        <div class="build-os">Windows</div>
+        <div class="build-req">Windows 10 or later</div>
+      </div>
+      <div class="build-files">
+        <div class="build-file mono">Marginal-setup.exe</div>
+        <div class="build-file mono">Marginal.msi</div>
+      </div>
+      <div class="build-pkg mono">x64</div>
     </div>
-  </section>
-
-  <section style="max-width: 900px; margin: 0 auto; padding: 48px 32px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px">
-    <div>
-      <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px">Package managers</div>
-      <div style="font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--muted); line-height: 2; white-space: pre-wrap">brew install --cask marginal
-winget install Marginal
-cargo install marginal-cli</div>
+    <div class="build-row" data-os="linux">
+      <div>
+        <div class="build-os">Linux</div>
+        <div class="build-req">x86_64 and aarch64</div>
+      </div>
+      <div class="build-files">
+        <div class="build-file mono">Marginal.AppImage</div>
+        <div class="build-file mono">marginal.deb <span class="size">/ marginal.rpm</span></div>
+      </div>
+      <div class="build-pkg mono">both architectures</div>
     </div>
-    <div>
-      <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px">Verify the download</div>
-      <div style="font-size: 12.5px; color: var(--muted)">Every artifact ships with a detached signature and a SHA-256 sum in <span style="font-family: ui-monospace, Menlo, monospace">SHASUMS256.txt</span>. macOS builds are notarized; Windows builds are Authenticode signed.</div>
-    </div>
-    <div>
-      <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px">Trial and licensing</div>
-      <div style="font-size: 12.5px; color: var(--muted)">14 days, no card. After that a subscription unlocks AI features. The editor, preview, and export keep working on expiry.</div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <footer style="max-width: 900px; margin: 64px auto 0; padding: 24px 32px 48px; border-top: 1px solid var(--border); display: flex; gap: 20px; color: var(--muted); font-size: 12px">
-    <span>Marginal {{ version }}</span>
-    <div style="flex: 1"></div>
-    <a href="Marginal Site.dc.html">Home</a>
-    <a href="Marginal Site.dc.html#pricing">Pricing</a>
-  </footer>
-</div>
+<section class="wrap-narrow info-cols" style="padding-top: 48px">
+  <div>
+    <h3>Updates, built in</h3>
+    <p>Marginal checks for updates and installs them in place. Every update artifact carries a minisign signature that is verified before anything is applied.</p>
+  </div>
+  <div>
+    <h3>Trial and licensing</h3>
+    <p>14 days with the full app, no card. After that, a subscription ($10/mo or $96/yr) keeps the editor writable; if it ever lapses, Marginal turns read-only — reading, preview, PDF export, and saving what you had already changed keep working. AI uses your own Anthropic key and is never locked.</p>
+  </div>
+  <div>
+    <h3>Verified builds</h3>
+    <p>macOS builds are signed with a Developer&nbsp;ID and notarized by Apple. All platforms verify update signatures before installing.</p>
+  </div>
+</section>
 
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;version&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;0.7.2&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;released&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;August 2026&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
-class Component extends DCLogic {
-  state = { dark: false };
+<footer class="site-footer" style="max-width: 900px; margin-top: 64px">
+  <span>Marginal 1.0</span>
+  <div class="spacer"></div>
+  <a href="/">Home</a>
+  <a href="/#pricing">Pricing</a>
+</footer>
 
-  componentDidMount() {
-    this.setState({ dark: document.documentElement.getAttribute('data-theme') === 'dark' });
+<script>
+(function () {
+  'use strict';
+
+  var root = document.documentElement;
+  var toggle = document.getElementById('theme-toggle');
+  function isDark() {
+    var attr = root.getAttribute('data-theme');
+    if (attr === 'dark') return true;
+    if (attr === 'light') return false;
+    return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
   }
+  function syncLabel() { toggle.textContent = isDark() ? 'Light' : 'Dark'; }
+  toggle.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncLabel();
+  });
+  syncLabel();
 
-  detect() {
-    const p = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
-    const ua = navigator.userAgent || '';
-    if (/mac/i.test(p) || /mac/i.test(ua)) return 'mac';
-    if (/win/i.test(p) || /windows/i.test(ua)) return 'win';
-    if (/linux/i.test(p) || /x11/i.test(ua)) return 'linux';
-    return null;
+  var p = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+  var ua = navigator.userAgent || '';
+  var os = /mac/i.test(p) || /mac/i.test(ua) ? 'mac'
+    : /win/i.test(p) || /windows/i.test(ua) ? 'win'
+    : /linux/i.test(p) || /x11/i.test(ua) ? 'linux' : null;
+  var names = { mac: 'macOS · universal', win: 'Windows · x64', linux: 'Linux · x86_64 / aarch64' };
+  if (os) {
+    document.getElementById('rec-title').textContent = names[os];
+    var row = document.querySelector('.build-row[data-os="' + os + '"]');
+    if (row) row.classList.add('recommended');
   }
-
-  renderVals() {
-    const version = this.props.version ?? '0.7.2';
-    const os = this.detect();
-    const primaries = {
-      mac: { title: 'macOS · universal', meta: 'Marginal-' + version + '.dmg · 14.2 MB', cta: 'Download .dmg' },
-      win: { title: 'Windows · x86_64', meta: 'Marginal-' + version + '-setup.exe · 16.8 MB', cta: 'Download .exe' },
-      linux: { title: 'Linux · x86_64', meta: 'Marginal-' + version + '.AppImage · 18.4 MB', cta: 'Download .AppImage' }
-    };
-    return {
-      version,
-      released: this.props.released ?? 'August 2026',
-      themeLabel: this.state.dark ? 'Light' : 'Dark',
-      toggleTheme: () => {
-        const next = this.state.dark ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        this.setState({ dark: !this.state.dark });
-      },
-      primary: primaries[os] || { title: 'All platforms', meta: 'Pick a build below', cta: 'See builds' },
-      builds: [
-        { key: 'mac', os: 'macOS', req: 'macOS 12 or later', pkg: 'notarized', files: [
-          { key: 1, name: 'Marginal-' + version + '.dmg', size: '14.2 MB' },
-          { key: 2, name: 'Marginal-' + version + '.zip', size: '13.6 MB' }
-        ] },
-        { key: 'win', os: 'Windows', req: 'Windows 10 or later', pkg: 'signed', files: [
-          { key: 1, name: 'Marginal-' + version + '-setup.exe', size: '16.8 MB' },
-          { key: 2, name: 'Marginal-' + version + '-x64.msi', size: '17.1 MB' }
-        ] },
-        { key: 'linux', os: 'Linux', req: 'glibc 2.31+, x86_64 / aarch64', pkg: 'sha256', files: [
-          { key: 1, name: 'Marginal-' + version + '.AppImage', size: '18.4 MB' },
-          { key: 2, name: 'marginal_' + version + '_amd64.deb', size: '15.9 MB' },
-          { key: 3, name: 'marginal-' + version + '.x86_64.rpm', size: '16.2 MB' }
-        ] }
-      ]
-    };
-  }
-}
-
+})();
 </script>
 </body>
 </html>
