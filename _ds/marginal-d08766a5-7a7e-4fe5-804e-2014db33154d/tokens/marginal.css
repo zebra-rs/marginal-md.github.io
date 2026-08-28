@@ -1,0 +1,63 @@
+/* Marginal design tokens — generated from the app's theme specs
+   (crates/marginal-core/src/theme/builtins/marginal-light.json and
+   marginal-dark.json). Variable names match the ones the app itself
+   sets on :root, so designs built here translate 1:1 into the app. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Marginal Light */
+  --bg: #ffffff;
+  --fg: #1f2430;
+  --muted: #6b7280;
+  --chrome-bg: #f6f7f9;
+  --border: #e2e5ea;
+  --hover-bg: rgb(0 0 0 / 0.05);
+  --active-bg: rgb(0 0 0 / 0.08);
+  --accent: #4f6bed;
+  --accent-fg: #ffffff;
+  --selection-bg: #d7d4f0;
+  --error: #d1242f;
+  --warning: #9a6700;
+  --success: #1a7f37;
+}
+
+/* Marginal Dark — applies when the host stamps data-theme="dark",
+   or under OS dark mode when no explicit light choice is stamped. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #06080c;
+  --fg: #edf1f7;
+  --muted: #8b95a5;
+  --chrome-bg: #161b22;
+  --border: #2a2f38;
+  --hover-bg: rgb(255 255 255 / 0.06);
+  --active-bg: rgb(255 255 255 / 0.1);
+  --accent: #6e87f5;
+  --accent-fg: #ffffff;
+  --selection-bg: #343d46;
+  --error: #f47067;
+  --warning: #c69026;
+  --success: #57ab5a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --bg: #06080c;
+    --fg: #edf1f7;
+    --muted: #8b95a5;
+    --chrome-bg: #161b22;
+    --border: #2a2f38;
+    --hover-bg: rgb(255 255 255 / 0.06);
+    --active-bg: rgb(255 255 255 / 0.1);
+    --accent: #6e87f5;
+    --accent-fg: #ffffff;
+    --selection-bg: #343d46;
+    --error: #f47067;
+    --warning: #c69026;
+    --success: #57ab5a;
+  }
+}
