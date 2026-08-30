@@ -1,437 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="dark">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marginal — the markdown editor for Claude Code</title>
-<meta name="description" content="A native markdown editor for macOS, Windows, and Linux. One Rust engine drives the editor, the preview, PDF export, and the AI context. Your files stay plain markdown on disk.">
-<link rel="canonical" href="https://marginal.md/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Marginal">
-<meta property="og:title" content="Marginal — the markdown editor for Claude Code">
-<meta property="og:description" content="A native markdown editor for macOS, Windows, and Linux. One Rust engine drives the editor, the preview, PDF export, and the AI context.">
-<meta property="og:url" content="https://marginal.md/">
-<meta property="og:image" content="https://marginal.md/assets/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1a1a1e">
-<link rel="icon" href="/assets/marginal-icon.svg" type="image/svg+xml">
-<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="/assets/icon-180.png">
-<link rel="stylesheet" href="/assets/site.css">
-<script>
-document.documentElement.classList.add('js');
-try {
-  var q = new URLSearchParams(location.search).get('theme');
-  var t = q === 'light' || q === 'dark' ? q : localStorage.getItem('theme');
-  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
-} catch (e) {}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Marginal",
-  "operatingSystem": "macOS, Windows, Linux",
-  "applicationCategory": "ProductivityApplication",
-  "url": "https://marginal.md/",
-  "offers": [
-    { "@type": "Offer", "price": "10", "priceCurrency": "USD", "description": "Monthly subscription" },
-    { "@type": "Offer", "price": "96", "priceCurrency": "USD", "description": "Annual subscription" }
-  ]
-}
-</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cradle</title>
+  <link rel="stylesheet" href="assets/fonts.css" />
+  <link rel="stylesheet" href="assets/theme.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/cradle-logo.svg" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <script type="text/javascript" src="sha256.js"></script>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="wrap header-row">
-    <a href="#top" class="brand">
-      <img src="/assets/marginal-icon.svg" width="22" height="22" alt="">
-      <span>Marginal</span>
-    </a>
-    <nav class="site-nav" aria-label="Site">
-      <a href="#features">Features</a>
-      <a href="#themes">Themes</a>
-      <a href="#ai">AI</a>
-      <a href="#pricing">Pricing</a>
-    </nav>
-    <div class="header-spacer"></div>
-    <button id="theme-toggle" class="btn-ghost-dark" title="Toggle light and dark">Dark</button>
-    <a href="/download.html" class="btn-primary btn-sm">Download</a>
-  </div>
-</header>
-
-<section id="top" class="hero">
-  <div class="hero-stripe"></div>
-  <div class="hero-grid">
-    <div>
-      <div class="badge">macOS · Windows · Linux</div>
-      <h1>The markdown editor for Claude&nbsp;Code</h1>
-      <p class="hero-sub">One Rust markdown engine drives the editor, the preview, and the context handed to the AI. Your files stay plain markdown on disk.</p>
-      <div class="hero-ctas">
-        <a href="/download.html" id="dl-cta" class="btn-primary">Download Marginal</a>
-        <a href="#pricing" class="btn-outline-dark">See pricing</a>
-      </div>
-      <p class="hero-note" id="platform-note">Builds for macOS, Windows, and Linux</p>
-    </div>
-
-    <div class="editor-mock" aria-hidden="true">
-      <div class="editor-chrome">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span class="filename mono">notes/engine.md</span>
-        <div class="spacer"></div>
-        <span class="saved">saved</span>
-      </div>
-      <div class="editor-panes">
-        <pre class="editor-src mono" id="demo-src"># The Rust engine
-
-Marginal parses once and reuses the tree.
-
-- Editor and preview stay in sync
-- PDF export uses the same renderer
-- AI reads the same nodes
-
-`marginal --reader notes/engine.md`
-<span class="cursor">▌</span></pre>
-        <div class="editor-preview" id="demo-preview">
-          <div class="pv-h1">The Rust engine</div>
-          <div class="pv-p">Marginal parses once and reuses the tree.</div>
-          <div class="pv-li"><span>Editor and preview stay in sync</span></div>
-          <div class="pv-li"><span>PDF export uses the same renderer</span></div>
-          <div class="pv-li"><span>AI reads the same nodes</span></div>
-          <div class="pv-code">marginal --reader notes/engine.md</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="features" class="section" data-reveal>
-  <h2 class="kicker">What it does</h2>
-  <div class="features-grid">
-    <div class="feature-cell">
-      <div class="cell-tag mono">rust</div>
-      <div class="cell-title">One markdown engine</div>
-      <div class="cell-body">A single Rust parser feeds the editor, the preview, PDF export, and the AI context. No second implementation to drift.</div>
-    </div>
-    <div class="feature-cell">
-      <div class="cell-tag mono">native</div>
-      <div class="cell-title">Native app, not a browser tab</div>
-      <div class="cell-body">A Rust core in a Tauri 2 shell on the platform webview — no bundled browser runtime to download, update, or keep warm.</div>
-    </div>
-    <div class="feature-cell">
-      <div class="cell-tag mono">ai</div>
-      <div class="cell-title">AI in the document</div>
-      <div class="cell-body">Select text, press ⌘K, and the rewrite streams in as an inline diff — accept, refine, or reject. One undo step.</div>
-    </div>
-    <div class="feature-cell">
-      <div class="cell-tag mono">claude code</div>
-      <div class="cell-title">Claude Code, first class</div>
-      <div class="cell-body">Your workspace's CLAUDE.md, skills, agents, and commands appear in the sidebar as ordinary markdown, and a built-in terminal runs Claude Code beside them.</div>
-    </div>
-    <div class="feature-cell">
-      <div class="cell-tag mono">files</div>
-      <div class="cell-title">Plain files, yours</div>
-      <div class="cell-body">Notes are .md files on your disk — no proprietary format, no forced sync. A licensed install keeps working offline for weeks between checks.</div>
-    </div>
-  </div>
-</section>
-
-<section id="ai" class="section" data-reveal>
-  <h2 class="section-title">AI that reads the document, not a screenshot of it</h2>
-  <p class="section-sub">The AI receives the same parsed tree the preview renders, so headings, code fences, and front matter arrive structured.</p>
-  <div class="tabbox">
-    <div class="tabbar" role="tablist" aria-label="AI features">
-      <button class="tab" role="tab" id="tab-0" aria-controls="pane-0" aria-selected="true">Inline edits</button>
-      <button class="tab" role="tab" id="tab-1" aria-controls="pane-1" aria-selected="false">Claude Code</button>
-      <button class="tab" role="tab" id="tab-2" aria-controls="pane-2" aria-selected="false">Your key</button>
-    </div>
-
-    <div class="tabpane" id="pane-0" role="tabpanel" aria-labelledby="tab-0">
-      <div>
-        <div class="pane-heading">Edit in place with ⌘K</div>
-        <p class="pane-body">Select a region — or just put the cursor in a block — and describe the change. The rewrite streams in as an inline diff against the original; nothing is applied until you accept.</p>
-        <ul class="points">
-          <li>Presets for the common asks: improve, fix grammar, make concise, expand, translate, change tone, continue</li>
-          <li>Accept lands one undo-able edit; Refine reopens the prompt with the result as context</li>
-          <li>“Ask about selection” answers in a side panel without touching the file</li>
-        </ul>
-      </div>
-      <pre class="codebox mono">⌘K  “tighten this paragraph”
-
-<span class="del">- The engine that we built parses the</span>
-<span class="del">-   whole document every time you type.</span>
-<span class="add">+ The engine parses once and reuses</span>
-<span class="add">+   the tree as you type.</span>
-
-<span class="dim">⏎ accept · esc reject · refine…</span></pre>
-    </div>
-
-    <div class="tabpane" id="pane-1" role="tabpanel" aria-labelledby="tab-1" hidden>
-      <div>
-        <div class="pane-heading">At home in a Claude Code workspace</div>
-        <p class="pane-body">Marginal groups your workspace's Claude Code files in the sidebar — CLAUDE.md, skills, agents, and commands are markdown, opened and edited like any note. A built-in terminal runs Claude Code without leaving the editor.</p>
-        <ul class="points">
-          <li>CLAUDE.md, .claude/skills, agents, and commands, grouped in the file list</li>
-          <li>All of it plain markdown, versioned with your repo</li>
-          <li>A terminal pane for claude, git, or anything else</li>
-        </ul>
-      </div>
-      <pre class="codebox mono">▾ Claude Code
-    CLAUDE.md
-  ▾ Skills
-      review/SKILL.md
-      release-notes/SKILL.md
-  ▾ Agents
-      editor.md
-  ▾ Commands
-      outline.md
-
-<span class="dim">▸ Terminal — claude</span></pre>
-    </div>
-
-    <div class="tabpane" id="pane-2" role="tabpanel" aria-labelledby="tab-2" hidden>
-      <div>
-        <div class="pane-heading">Your key, your data</div>
-        <p class="pane-body">AI runs on your own Anthropic API key. It lives in the OS keychain and is attached to requests inside the Rust process — it never reaches the webview, the logs, or a config file.</p>
-        <ul class="points">
-          <li>Document content leaves the machine only when you invoke an AI action</li>
-          <li>Model is configurable; Claude Opus by default</li>
-          <li>AI is never a license gate — the subscription covers the editor</li>
-        </ul>
-      </div>
-      <pre class="codebox mono">Settings → AI
-
-Anthropic API key   ••••••••••••••••
-<span class="dim">stored in the system keychain</span>
-
-model               claude-opus-5
-sent                <span class="dim">only when you ask</span></pre>
-    </div>
-  </div>
-</section>
-
-<section id="themes" class="section" data-reveal>
-  <h2 class="section-title">Ten built-in themes</h2>
-  <p class="section-sub">Five palettes, each in light and dark — Marginal's own two plus bundled favorites — with support for third-party theme add-ons. Editor and preview read the same theme.</p>
-  <div class="themes-grid">
-    <div class="theme-card" style="background: #ffffff">
-      <div class="theme-head" style="color: #1f2430; border-color: #e2e5ea">Marginal Light</div>
-      <pre class="theme-sample mono" style="color: #6b7280; border-color: #4f6bed"># Heading
-body text
-`code`</pre>
-    </div>
-    <div class="theme-card" style="background: #06080c">
-      <div class="theme-head" style="color: #edf1f7; border-color: #2a2f38">Marginal Dark</div>
-      <pre class="theme-sample mono" style="color: #8b95a5; border-color: #6e87f5"># Heading
-body text
-`code`</pre>
-    </div>
-    <div class="theme-card" style="background: #ffffff">
-      <div class="theme-head" style="color: #1f2328; border-color: #d1d9e0">GitHub Light</div>
-      <pre class="theme-sample mono" style="color: #59636e; border-color: #0969da"># Heading
-body text
-`code`</pre>
-    </div>
-    <div class="theme-card" style="background: #0d1117">
-      <div class="theme-head" style="color: #f0f6fc; border-color: #3d444d">GitHub Dark</div>
-      <pre class="theme-sample mono" style="color: #9198a1; border-color: #4493f8"># Heading
-body text
-`code`</pre>
-    </div>
-    <div class="theme-card" style="background: #fcf6e5">
-      <div class="theme-head" style="color: #697a82; border-color: #dcd4c1">Solarized Light</div>
-      <pre class="theme-sample mono" style="color: #96a1a1; border-color: #b695f3"># Heading
-body text
-`code`</pre>
-    </div>
-    <div class="theme-card" style="background: #0e2a35">
-      <div class="theme-head" style="color: #869396; border-color: #1d4250">Solarized Dark</div>
-      <pre class="theme-sample mono" style="color: #5c6d74; border-color: #b695f3"># Heading
-body text
-`code`</pre>
-    </div>
-    <div class="theme-card" style="background: #fdfbf3">
-      <div class="theme-head" style="color: #282a36; border-color: #e6e1d2">Dracula Light</div>
-      <pre class="theme-sample mono" style="color: #6272a4; border-color: #7c4dcc"># Heading
-body text
-`code`</pre>
-    </div>
-    <div class="theme-card" style="background: #282a36">
-      <div class="theme-head" style="color: #f8f8f2; border-color: #44475a">Dracula Dark</div>
-      <pre class="theme-sample mono" style="color: #6272a4; border-color: #bd93f9"># Heading
-body text
-`code`</pre>
-    </div>
-    <div class="theme-card" style="background: #ffffff">
-      <div class="theme-head" style="color: #2b2733; border-color: #e5e0e6">Zenburn Light</div>
-      <pre class="theme-sample mono" style="color: #77707e; border-color: #d63394"># Heading
-body text
-`code`</pre>
-    </div>
-    <div class="theme-card" style="background: #1f1c1e">
-      <div class="theme-head" style="color: #d2d5db; border-color: #37333a">Zenburn Dark</div>
-      <pre class="theme-sample mono" style="color: #8a8f98; border-color: #ee6cb8"># Heading
-body text
-`code`</pre>
-    </div>
-  </div>
-</section>
-
-<section id="pricing" class="section" data-reveal>
-  <h2 class="section-title">Pricing</h2>
-  <p class="section-sub">One plan, two ways to pay. A subscription covers every platform and every device you sign in on, and starts with a 14-day trial — no card.</p>
-  <div class="pricing-grid">
-    <div class="plan">
-      <div class="plan-name">Monthly</div>
-      <div class="plan-price"><span class="amount">$10</span><span class="period">/ month</span></div>
-      <div class="plan-note">Cancel anytime.</div>
-      <div class="plan-items">
-        <div>macOS, Windows, and Linux, every device</div>
-        <div>Inline AI with your own Anthropic key</div>
-        <div>Ten built-in themes, add-ons welcome</div>
-        <div>PDF export, reader mode, terminal</div>
-      </div>
-      <a href="/download.html" class="plan-cta">Start the trial</a>
-    </div>
-    <div class="plan featured">
-      <div class="plan-name">Annual</div>
-      <div class="plan-price"><span class="amount">$96</span><span class="period">/ year</span></div>
-      <div class="plan-note">$8 a month, billed once a year — 20% off.</div>
-      <div class="plan-items">
-        <div>macOS, Windows, and Linux, every device</div>
-        <div>Inline AI with your own Anthropic key</div>
-        <div>Ten built-in themes, add-ons welcome</div>
-        <div>PDF export, reader mode, terminal</div>
-      </div>
-      <a href="/download.html" class="plan-cta primary">Start the trial</a>
-    </div>
-  </div>
-  <p class="fineprint">If your subscription ends, Marginal turns read-only rather than locking up: reading, preview, PDF export, and saving anything you had already changed keep working. Your files are never held hostage. Already subscribed? <a href="https://license.marginal.md/account">Manage your subscription</a> — card, plan, cancellation, invoices.</p>
-</section>
-
-<section class="section" data-reveal>
-  <div class="dlband">
-    <div>
-      <div class="dlband-title">One app per platform. No runtime to install.</div>
-      <div class="dlband-sub">Universal macOS build (macOS 12 or later) · x86_64 and aarch64 Linux · Windows 10 and later.</div>
-    </div>
-    <div class="dl-cards">
-      <a href="/download.html" class="dl-card"><span class="os">macOS</span><span class="file mono">.dmg · universal</span></a>
-      <a href="/download.html" class="dl-card"><span class="os">Windows</span><span class="file mono">.exe · .msi</span></a>
-      <a href="/download.html" class="dl-card"><span class="os">Linux</span><span class="file mono">.AppImage · .deb · .rpm</span></a>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <img src="/assets/marginal-icon.svg" width="18" height="18" alt="">
-  <span>Marginal — notes in the margin, files on your disk.</span>
-  <div class="spacer"></div>
-  <a href="/download.html">Download</a>
-  <a href="#pricing">Pricing</a>
-  <a href="https://license.marginal.md/account">Manage subscription</a>
-  <a href="#top">Back to top</a>
-</footer>
-
-<script>
-(function () {
-  'use strict';
-
-  // Theme toggle — label names the theme you'd switch to.
-  var root = document.documentElement;
-  var toggle = document.getElementById('theme-toggle');
-  function isDark() {
-    var attr = root.getAttribute('data-theme');
-    if (attr === 'dark') return true;
-    if (attr === 'light') return false;
-    return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-  function syncLabel() { toggle.textContent = isDark() ? 'Light' : 'Dark'; }
-  toggle.addEventListener('click', function () {
-    var next = isDark() ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch (e) {}
-    syncLabel();
-  });
-  syncLabel();
-
-  // Platform detection — labels only, both CTAs point at the download page.
-  var p = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
-  var ua = navigator.userAgent || '';
-  var os = /mac/i.test(p) || /mac/i.test(ua) ? 'macOS'
-    : /win/i.test(p) || /windows/i.test(ua) ? 'Windows'
-    : /linux/i.test(p) || /x11/i.test(ua) ? 'Linux' : null;
-  if (os) {
-    document.getElementById('dl-cta').textContent = 'Download for ' + os;
-    document.getElementById('platform-note').textContent = 'Detected ' + os + ' — builds also for the other two';
-  }
-
-  // Tabs.
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  tabs.forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      tabs.forEach(function (t) {
-        var on = t === tab;
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-      });
-    });
-  });
-
-  // Reveal on scroll.
-  var revealed = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
-  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var noanim = /[?&]noanim=1/.test(location.search);
-  if (!reduced && !noanim && typeof IntersectionObserver === 'function') {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '-4% 0px -8%' });
-    revealed.forEach(function (el) { io.observe(el); });
-  } else {
-    revealed.forEach(function (el) { el.classList.add('in'); });
-  }
-
-  // Typing demo — replays the source pane and re-renders the preview per line.
-  if (!reduced && !noanim) {
-    var SRC = '# The Rust engine\n\nMarginal parses once and reuses the tree.\n\n- Editor and preview stay in sync\n- PDF export uses the same renderer\n- AI reads the same nodes\n\n`marginal --reader notes/engine.md`\n';
-    var srcEl = document.getElementById('demo-src');
-    var pvEl = document.getElementById('demo-preview');
-    var n = SRC.length;
-    function render(text) {
-      srcEl.textContent = text;
-      var cur = document.createElement('span');
-      cur.className = 'cursor';
-      cur.textContent = '▌';
-      srcEl.appendChild(cur);
-      var lines = text.split('\n');
-      lines.pop(); // the line still being typed stays out of the preview
-      pvEl.textContent = '';
-      lines.forEach(function (raw) {
-        var line = raw.trim();
-        if (!line) return;
-        var el;
-        if (line.indexOf('# ') === 0) {
-          el = document.createElement('div'); el.className = 'pv-h1'; el.textContent = line.slice(2);
-        } else if (line.indexOf('- ') === 0) {
-          el = document.createElement('div'); el.className = 'pv-li';
-          var s = document.createElement('span'); s.textContent = line.slice(2); el.appendChild(s);
-        } else if (line.charAt(0) === '`') {
-          el = document.createElement('div'); el.className = 'pv-code'; el.textContent = line.replace(/`/g, '');
-        } else {
-          el = document.createElement('div'); el.className = 'pv-p'; el.textContent = line;
-        }
-        pvEl.appendChild(el);
-      });
-    }
-    setInterval(function () {
-      n = n >= SRC.length ? 0 : n + 1;
-      render(SRC.slice(0, n));
-    }, 1000 / 26);
-  }
-})();
-</script>
+      <form id="form">
+      <p id="message">Please enter your password.</p>
+      <input type="password" placeholder="password" id="password">
+    </form>
+    <script>
+     function hash(text) {
+       const sha = new jsSHA('SHA-256', 'TEXT');
+       sha.update(text);
+       return sha.getHash('HEX');
+     }
+     function auth(password) {
+       const url = hash(password);
+       const xhr = new XMLHttpRequest();
+       xhr.open('GET', url);
+       xhr.send();
+       xhr.onload = function () {
+         if (xhr.readyState === 4 && xhr.status === 200) {
+           window.location = url;
+         } else {
+           const message = document.getElementById('message');
+           const input = document.getElementById('password');
+           message.innerHTML = 'Wrong password! Try again.';
+           input.value = '';
+         }
+       };
+       xhr.onerror = function () {
+         const message = document.getElementById('message');
+         message.innerHTML = 'Sorry, ERROR !';
+       };
+     }
+     const form = document.getElementById('form');
+     form.addEventListener('submit', function (event) {
+       const password = document.getElementById('password').value;
+       auth(password);
+       event.preventDefault();
+     });
+    </script>
 </body>
 </html>
