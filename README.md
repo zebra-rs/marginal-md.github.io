@@ -9,6 +9,10 @@ The Marginal marketing site, served by GitHub Pages at **https://marginal.md**
   framework, no external requests. Shared styles in `assets/site.css`
   (design tokens mirror the app's `marginal-light`/`marginal-dark` themes;
   ink/vermilion/cream come from the app icon).
+- `docs/` — the **user manual**, an [Astro](https://astro.build) +
+  [Starlight](https://starlight.astro.build) project. Pages are Markdown in
+  `docs/src/content/docs/` (Markdoc `.mdoc` works too); the build is static
+  and is served at **https://marginal.md/docs/**. See `docs/README.md`.
 - `design/` — the **Claude Design canvas export** the static pages were baked
   from (`Marginal Site.dc.html`, `Marginal Download.dc.html` + `support.js`
   runtime + `_ds/` design system). Not served as the site (robots.txt
@@ -28,4 +32,13 @@ $10/mo or $96/yr with a 14-day no-card trial, a lapsed subscription means
 read-only (never locked files), and AI runs on the customer's own Anthropic
 key (never a license gate). See `design/BACKEND.md` §8 in the backend repo.
 
-`./run.sh` serves the site locally on port 8090.
+For the manual, add or edit pages under `docs/src/content/docs/`; each needs
+a `title:` frontmatter line. `pnpm --dir docs dev` serves it with hot reload
+and `pnpm --dir docs build` writes `docs/dist/`.
+
+## Deploying
+
+`.github/workflows/deploy.yml` builds the manual on every push to `main`,
+copies the hand-baked pages next to it, and publishes the result through
+GitHub Pages — the repository's Pages source must be set to **GitHub
+Actions**. `./run.sh` serves the site locally on port 8090.

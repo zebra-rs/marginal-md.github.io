@@ -1,0 +1,57 @@
+/* Marginal manual — Starlight palette overrides.
+   Values mirror ../../assets/site.css (which mirrors the app's
+   marginal-light / marginal-dark themes); keep the two in step. */
+
+:root {
+  /* brand constants (same in both themes) */
+  --ink: #1a1a1e;
+  --vermilion: #e4572e;
+  --cream: #faf6ef;
+
+  /* dark (Starlight's default theme) */
+  --sl-color-accent-low: #1c2452;
+  --sl-color-accent: #6e87f5;
+  --sl-color-accent-high: #c3cffb;
+  --sl-color-white: #edf1f7;
+  --sl-color-gray-1: #dfe4ec;
+  --sl-color-gray-2: #c4ccd8;
+  --sl-color-gray-3: #8b95a5;
+  --sl-color-gray-4: #4a5261;
+  --sl-color-gray-5: #2a2f38;
+  --sl-color-gray-6: #161b22;
+  --sl-color-black: #06080c;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #dfe5fc;
+  --sl-color-accent: #4f6bed;
+  --sl-color-accent-high: #22359a;
+  --sl-color-white: #1f2430;
+  --sl-color-gray-1: #2b3140;
+  --sl-color-gray-2: #3c4353;
+  --sl-color-gray-3: #6b7280;
+  --sl-color-gray-4: #9aa1ad;
+  --sl-color-gray-5: #e2e5ea;
+  --sl-color-gray-6: #f6f7f9;
+  --sl-color-gray-7: #fafbfc;
+  --sl-color-black: #ffffff;
+}
+
+/* Header: the same ink band as the marketing site, in both themes. */
+.header {
+  background: var(--ink);
+  border-bottom-color: rgb(250 246 239 / 0.12);
+  --sl-color-text-accent: var(--cream);
+  --sl-color-white: var(--cream);
+  --sl-color-gray-1: rgb(250 246 239 / 0.85);
+  --sl-color-gray-2: rgb(250 246 239 / 0.8);
+  --sl-color-gray-3: rgb(250 246 239 / 0.66);
+  --sl-color-gray-5: rgb(250 246 239 / 0.2);
+  --sl-color-gray-6: rgb(250 246 239 / 0.08);
+  --sl-color-black: var(--ink);
+}
+
+/* Links pick up the site's vermilion on hover. */
+.sl-markdown-content a:not(:where(.not-content *)):hover {
+  color: var(--vermilion);
+}
