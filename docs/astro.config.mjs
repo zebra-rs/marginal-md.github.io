@@ -20,6 +20,12 @@ export default defineConfig({
         baseUrl: 'https://github.com/zebra-rs/marginal.github.io/edit/main/docs/',
       },
       sidebar: [
+        { label: 'Start here', items: [{ autogenerate: { directory: 'start' } }] },
+        { label: 'Files', items: [{ autogenerate: { directory: 'files' } }] },
+        { label: 'Writing', items: [{ autogenerate: { directory: 'writing' } }] },
+        { label: 'AI', items: [{ autogenerate: { directory: 'ai' } }] },
+        { label: 'Output', items: [{ autogenerate: { directory: 'output' } }] },
+        { label: 'More', items: [{ autogenerate: { directory: 'more' } }] },
         { label: 'Reference', items: [{ autogenerate: { directory: 'reference' } }] },
       ],
     }),

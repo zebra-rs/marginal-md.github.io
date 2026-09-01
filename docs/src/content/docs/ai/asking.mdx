@@ -1,0 +1,32 @@
+---
+title: Asking about a selection
+description: Ask a question about part of the document and read the answer in place, without changing anything.
+sidebar: { order: 3 }
+---
+
+import Shot from '../../../components/Shot.astro';
+
+**AI ▸ Ask About Selection…** opens the AI bar in **Ask** mode. The answer
+streams in below your question and the document is left untouched.
+
+<Shot name="ai-ask" alt="The AI bar in Ask mode with a question field and the presets Summarize this, Explain this, and Suggest improvements" caption="Ask mode: the answer appears in the bar, the text stays as it is." />
+
+## Asking
+
+1. Select the text to ask about, or put the cursor in a paragraph.
+2. Choose **AI ▸ Ask About Selection…**, or open the bar with
+   <kbd>⌘K</kbd> and click **Ask**.
+3. Type a question, or use a preset: **Summarize this**, **Explain
+   this**, **Suggest improvements**.
+4. Press <kbd>Enter</kbd>. The answer is rendered as markdown in the bar.
+
+**Ask Again** keeps the answer and lets you follow up; **Done** closes the
+bar. The AI sees the same context as for an edit: the selection and about
+8,000 characters around it.
+
+:::caution[The ⌘⇧K shortcut in version 0.9.7]
+The menu shows <kbd>⌘⇧K</kbd> for Ask About Selection, but when the cursor
+is in the editor that key currently deletes the current line instead. Use
+the menu, the command palette, or the **Ask** button in the
+<kbd>⌘K</kbd> bar until this is fixed.
+:::

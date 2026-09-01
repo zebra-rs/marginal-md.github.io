@@ -1,0 +1,62 @@
+---
+title: Finding files
+description: Filter the file list by name, jump to a file with Go to File, and run commands from the palette.
+sidebar: { order: 3 }
+---
+
+import Shot from '../../../components/Shot.astro';
+
+Marginal has two ways to reach a file by name. The **filter** narrows the
+file list and stays in place while you work; **Go to File** is a one-shot
+jump that closes as soon as you pick something.
+
+## The filter
+
+<Shot name="filter-files" alt="The file list filtered by the word notes, showing one match with the matched letters highlighted" caption="Typing in the filter box narrows the list; the matched letters are highlighted." />
+
+Click the **Filter files** box at the top of the file list, or press
+<kbd>⌘⇧F</kbd> (**View ▸ Filter Files**), and type. The list narrows as you
+go and the matched letters are highlighted.
+
+How matching works:
+
+- Several words match together, in any order. `plan launch` finds
+  `Launch plan.md`.
+- You never type the extension. Words match the file name with `.md`
+  stripped.
+- Case is smart: lower-case words ignore case, a capital letter makes the
+  word case-sensitive.
+- A word containing `/`, `\`, or `.` matches the path inside the workspace
+  instead of the file name, so `docs/th` finds `docs/THEMES.md`.
+
+Results are ranked: an exact name first, then names starting with the
+word, names matching its initials, names containing it, and finally names
+and paths whose letters merely appear in order.
+
+The filter always searches the whole subtree of the selected folder, even
+when *List files in subfolders* is off. The count line says how many files
+matched and where; **Search all of …** widens the search to the entire
+workspace. Long results are cut at 200 rows.
+
+Use <kbd>↓</kbd> and <kbd>↑</kbd> to move through the results and
+<kbd>Enter</kbd> to open one. <kbd>Esc</kbd> clears the filter; a second
+<kbd>Esc</kbd> returns you to the editor.
+
+## Go to File
+
+<Shot name="go-to-file" alt="The Go to File panel listing recent files" caption="Go to File starts with your recent files and narrows as you type." />
+
+Press <kbd>⌘T</kbd> (**View ▸ Go to File…**) for a panel over the editor.
+Empty, it lists your recent files and the most recently modified ones; as
+you type, it fuzzy-matches the path of every file in the workspace.
+<kbd>Enter</kbd> opens the highlighted file, <kbd>Esc</kbd> closes the
+panel.
+
+## The command palette
+
+<Shot name="command-palette" alt="The command palette listing commands with their shortcuts" caption="Type > in Go to File, or press ⌘⇧P, to run any command by name." />
+
+Type `>` in the Go to File panel, or press <kbd>⌘⇧P</kbd>
+(**View ▸ Command Palette…**), and the panel lists every command in the
+app with its shortcut. Commands that have no shortcut, such as the folding
+commands and the exports, are quickest to reach this way.

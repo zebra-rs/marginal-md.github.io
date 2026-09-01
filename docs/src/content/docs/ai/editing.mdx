@@ -1,0 +1,54 @@
+---
+title: Editing with AI
+description: Ask the AI to rewrite a selection, review its change as an inline diff, and accept or reject it.
+sidebar: { order: 2 }
+---
+
+import Shot from '../../../components/Shot.astro';
+
+Select some text and press <kbd>⌘K</kbd> (**AI ▸ Edit Selection…**). Tell
+the AI what to do with it, and the change streams into the editor as an
+inline diff for you to accept or reject.
+
+<Shot name="ai-edit" alt="The AI bar in Edit mode below a highlighted selection, with an instruction field and preset buttons" caption="⌘K opens the AI bar under the selection." />
+
+## Making an edit
+
+1. Select the text to change. With nothing selected, Marginal takes the
+   block around the cursor: the paragraph, list, or code block.
+2. Press <kbd>⌘K</kbd>. The AI bar opens below the selection.
+3. Type an instruction, or click one of the presets: **Improve the
+   writing**, **Fix grammar and spelling**, **Make it more concise**,
+   **Expand with more detail**, **Continue writing**.
+4. Press <kbd>Enter</kbd>. The replacement streams in as a diff: removed
+   text struck through, new text highlighted. **Stop** (<kbd>Esc</kbd>)
+   cancels a request in flight.
+5. **Accept** (<kbd>⌘↩</kbd>) keeps the change, **Reject**
+   (<kbd>Esc</kbd>) restores the original, **Retry** asks again.
+
+An accepted edit is one step in the undo history. The AI sees the
+selection plus about 8,000 characters on either side of it, so it knows
+the surrounding context without reading the whole file.
+
+In Preview-only view, <kbd>⌘K</kbd> switches to Split first, since the
+diff lives in the editor. Pressing <kbd>⌘K</kbd> again closes the bar.
+Switching or closing the tab cancels the request and restores the text.
+
+## Slash commands
+
+A few commands typed into the bar run locally and are never sent to the
+AI. Type `/` to see them.
+
+| Command | Does |
+|---|---|
+| `/login` | Opens the Anthropic console's keys page and Settings ▸ AI |
+| `/fold`, `/fold 2` … `/fold 6`, `/fold all` | Folds the current section, every section of a level, or everything |
+| `/expand`, `/expand all` | Expands the current section, or everything |
+
+<kbd>↑</kbd> and <kbd>↓</kbd> move through the list, <kbd>Tab</kbd>
+completes, <kbd>Enter</kbd> runs.
+
+## Asking instead of editing
+
+The same bar has an **Ask** mode that answers questions about the text
+without changing it. See [Asking about a selection](../asking/).

@@ -1,5 +1,6 @@
 ---
 title: Keybindings
+sidebar: { order: 1 }
 description: App shortcuts, the Default, Emacs, and Vim keymap schemes, and custom shortcuts.
 ---
 

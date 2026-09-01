@@ -1,0 +1,143 @@
+---
+title: Settings
+description: Every setting, tab by tab.
+sidebar: { order: 3 }
+---
+
+import Shot from '../../../components/Shot.astro';
+
+Open Settings with <kbd>⌘,</kbd>, the **⚙︎** button in the toolbar, or
+**Settings…** in the app menu. <kbd>Esc</kbd> closes it. **Reset Settings**
+at the bottom of the category list puts everything back to its default;
+your recent files and your API key are kept.
+
+Settings are saved in `settings.json` in the
+[config directory](../../more/platforms/#where-marginal-keeps-its-files).
+Pane widths, the terminal height, and the zoom level are remembered per
+machine, outside that file.
+
+## Account
+
+Sign in, subscribe, manage devices, and see your licence status. This tab
+is described on [Account and subscription](../../more/account/).
+
+## General
+
+<Shot name="settings-general" alt="The General tab of Settings" />
+
+**Files**
+
+| Setting | Default | What it does |
+|---|---|---|
+| List files in subfolders | off | Show files from every folder below the selected one |
+| Sort files by | Name | Order the file list by name or by last modification |
+| Unfold Claude Code sections | off | Open the CLAUDE.md, rules, skills, agents, and commands sections by default |
+| Disable reader mode on double-click | off | Open double-clicked files in the editor instead of the [reading view](../../writing/reading-view/) |
+
+**Saving**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Autosave | off | Save documents that have a file a moment after you stop typing |
+| Autosave delay (ms) | 1500 | How long after the last keystroke; 500 to 10 000 |
+
+**Updates**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Check for updates at launch | on | Look for a new version after launch and show it in the status bar; nothing downloads until you ask |
+
+## Appearance
+
+<Shot name="settings-appearance" alt="The Appearance tab of Settings" />
+
+**Theme**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Appearance | System | Follow the system, or force light or dark |
+| Light theme | Marginal Light | The theme used in light appearance, and for print and export |
+| Dark theme | Marginal Dark | The theme used in dark appearance |
+| Theme add-ons | | **Open Themes Folder** and **Reload Themes**, see [Themes](../themes/) |
+
+Ten themes are built in: Marginal, GitHub, Solarized, Zenburn, and Dracula,
+each in a light and a dark version. Add-ons appear below them under their
+own heading.
+
+**Interface**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Sidebar & list font size | 13 | Text size of the sidebar and file list |
+
+**Window** (macOS only)
+
+| Setting | Default | What it does |
+|---|---|---|
+| Background blur off | off | Turn off the frosted-glass window background |
+| Background opacity | 0.95 | Window opacity when blur is off; light appearance is always opaque |
+
+## Editor
+
+<Shot name="settings-editor" alt="The Editor tab of Settings" />
+
+**Font**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Font size | 13.5 | Editor text size; zoom multiplies it |
+| Font family | system monospace | Any installed font; leave empty for the system's monospace |
+
+**Gutter**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Line numbers | off | Number the lines, left of the fold chevrons |
+| Git changes | off | Mark added, changed, and removed lines against the repository |
+| Compare against | HEAD | The last commit, or the staging index |
+
+**Keybindings**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Scheme | Default | Default, Emacs, or Vim editing keys |
+
+**Custom shortcuts** binds a key chord to any application or editor
+command. See [Keybindings](../keybindings/#custom-shortcuts).
+
+## Preview
+
+<Shot name="settings-preview" alt="The Preview tab of Settings" />
+
+**Font**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Font size (px) | 16 | Preview text size; zoom multiplies it |
+
+**Layout**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Force light preview | off | Keep the preview light while the app is dark |
+| Preview width (px) | 950 | Width of the preview column |
+| Preview margin (px) | 20 | Space around the preview column |
+
+**Print & PDF**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Print margin (mm) | 8 | Extra left and right margin on paper and in PDFs |
+| Print header offset (mm) | 8 | Extra space at the top of each page |
+
+## AI
+
+<Shot name="settings-ai" alt="The AI tab of Settings" />
+
+| Setting | Default | What it does |
+|---|---|---|
+| Model | claude-opus-5 | The Claude model for requests |
+| Effort | high | low, medium, or high |
+| Anthropic API key | | Saved to the system keychain; **Clear** removes it |
+
+See [Connect your Anthropic key](../../ai/setup/).

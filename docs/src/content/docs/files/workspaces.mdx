@@ -1,0 +1,69 @@
+---
+title: Workspaces and the sidebar
+description: Open a folder as your workspace, browse it in the sidebar and file list, and what Marginal shows there.
+sidebar: { order: 1 }
+---
+
+import Shot from '../../../components/Shot.astro';
+
+A workspace is a folder. Open one with **File ▸ Open Folder…**
+(<kbd>⌘⇧O</kbd>), drop a folder on the window, or pick it from
+**File ▸ Open Recent Folder** or the Welcome screen. Marginal remembers your
+last workspace and reopens it at launch, and keeps the ten most recent ones.
+
+Nothing is imported or indexed. The files stay where they are, and any other
+tool can edit them at the same time.
+
+## The sidebar
+
+The sidebar is the folder tree of the workspace. Only folders appear there;
+files are in the list next to it. Select a folder to scope the file list to
+it, or the workspace root to lift the scope.
+
+**View ▸ Toggle Sidebar** (<kbd>⌘⇧E</kbd>) cycles through three states:
+folders and files, files only, and hidden. Drag the edges of the sidebar,
+the file list, and the editor to resize them; Marginal remembers the widths
+per machine.
+
+## The file list
+
+<Shot name="editor-split" alt="The file list showing three markdown files with their titles and modification times" caption="Each row shows the file name, when it changed, and its first line of text." />
+
+Each row shows the file name, how long ago it changed, and the first
+meaningful line of the file, with front matter and heading marks stripped.
+Click a row to open the file in a tab.
+
+Marginal lists files ending in `.md`, `.markdown`, or `.mdown`. It skips
+hidden folders and generated ones such as `node_modules` and `target`.
+
+Two settings under **Settings ▸ General ▸ Files** shape the list:
+
+- **List files in subfolders** includes the files of every folder below the
+  selected one, not just its own.
+- **Sort files by** orders the list by name or by last modification.
+
+To find a file by name, type in the **Filter files** box at the top of the
+list. See [Finding files](../finding-files/).
+
+## Claude Code sections
+
+If the workspace contains Claude Code assets, they get collapsible sections
+of their own below **MARKDOWN**: **CLAUDE.md**, **RULES**, **SKILLS**,
+**AGENTS**, and **COMMANDS**. Each entry is badged *project*, *user*, or
+*local* to say where it comes from, and shows the asset's description as its
+second line. The sections start collapsed; **Settings ▸ General ▸ Unfold
+Claude Code sections** opens them by default.
+
+## Drag and drop
+
+Drop a markdown file on the window to open it in a tab, or drop a folder to
+make it the workspace. Dropping an image is different: it is copied into an
+`assets` folder next to the document and linked at the drop point. See
+[Images](../../writing/editor/#images).
+
+## Changes made outside Marginal
+
+Marginal watches the workspace. New, renamed, and deleted files show up in
+the list within a second. If the file you are editing changes on disk,
+Marginal asks whether to **Keep Editing** or **Reload From Disk**; if it is
+deleted, the status bar says so and saving brings it back.

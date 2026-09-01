@@ -19,3 +19,7 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# compiled screenshot helper (docs/shots/shoot.sh builds it)
+shots/winid
+shots/click

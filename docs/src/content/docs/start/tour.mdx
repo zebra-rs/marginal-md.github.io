@@ -1,0 +1,68 @@
+---
+title: A tour of the window
+description: What each part of the Marginal window does.
+sidebar: { order: 2 }
+---
+
+import Shot from '../../../components/Shot.astro';
+
+<Shot name="editor-split" alt="The Marginal window in split view, with the sidebar, file list, editor, and preview" caption="Split view: sidebar and file list on the left, editor and preview on the right." />
+
+## The toolbar
+
+From left to right:
+
+- **☰** shows and hides the sidebar (<kbd>⌘⇧E</kbd>). Each press cycles
+  through folders and files, files only, and hidden.
+- The **workspace name**. Hover it for the full path.
+- The **table of contents** button lists every heading in the current
+  document; pick one to jump to it.
+- The **file name**, with a dot when the document has unsaved changes.
+- **Editor / Split / Preview** switch the view mode (<kbd>⌘1</kbd>,
+  <kbd>⌘2</kbd>, <kbd>⌘3</kbd>).
+- **⚙︎** opens Settings (<kbd>⌘,</kbd>).
+
+## The sidebar
+
+The sidebar shows the folders of your workspace. Select one to list only
+its files; select the workspace root to see everything again. Drag its
+right edge to resize it.
+
+## The file list
+
+The file list shows the markdown files of the selected folder, with a
+relative time and the first line of each file. The **Filter files** box at
+the top narrows the list as you type; see
+[Finding files](../../files/finding-files/).
+
+Below the markdown files, Claude Code assets in the folder (CLAUDE.md,
+rules, skills, agents, commands) get sections of their own. See
+[Workspaces and the sidebar](../../files/workspaces/).
+
+## Tabs
+
+Every open document is a tab. Drag tabs to reorder them, close one with its
+**×** (<kbd>⌘W</kbd>) or a middle click, and press **+** for a new document
+(<kbd>⌘N</kbd>). See [Tabs, saving, and autosave](../../files/tabs-and-saving/).
+
+## Editor and preview
+
+The editor on the left is where you write; the preview on the right renders
+what you wrote and stays in step as you scroll either pane. Each has its own
+page: [The editor](../../writing/editor/) and
+[Live preview](../../writing/preview/).
+
+## The status bar
+
+The status bar shows the cursor position and the word and character counts.
+Other things appear there when they matter: the current keymap or Vim mode,
+a pulsing **AI** indicator during a request, an **Update to …** chip when a
+new version is available, a licence chip when you are in a trial or read-only,
+and whether autosave is on.
+
+## The Welcome screen
+
+<Shot name="welcome" alt="The Welcome screen with Open Folder, Open File, and New Document buttons and a list of recent folders" />
+
+With no documents open you see the Welcome screen: open a folder, open a
+file, start a new document, or return to a recent folder.

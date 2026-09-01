@@ -1,0 +1,81 @@
+---
+title: The editor
+description: Writing markdown in Marginal, from syntax highlighting and folding to images, zoom, and the git gutter.
+sidebar: { order: 1 }
+---
+
+import Shot from '../../../components/Shot.astro';
+
+The editor is a plain-text markdown editor. It highlights markdown syntax,
+wraps long lines, and marks the current line. What you type is what ends
+up in the file, byte for byte.
+
+<Shot name="editor-only" alt="The editor alone, showing a markdown document with highlighted headings, a tip block, and a table" caption="Editor view (⌘1). Headings, emphasis, code, and tables are tinted as you type." />
+
+## Folding
+
+Every heading can fold the section below it, up to the next heading of the
+same or a higher level. Click the chevron in the gutter next to a heading,
+or use the commands in the **View** menu and the command palette:
+**Fold All Sections**, **Fold Level 2**, **Fold Level 3**, **Fold Level 4**,
+and **Unfold All Sections**. A folded section shows as `⋯`.
+
+<Shot name="fold-all" alt="The editor with every section folded, showing only the top heading and a fold marker" caption="Fold All Sections collapses the document to its top heading." />
+
+Only `#`-style headings fold. Headings underlined with `===` or `---` do
+not.
+
+The `/fold` and `/expand` commands in the [AI bar](../../ai/editing/#slash-commands)
+fold and expand from the keyboard: `/fold` folds the current section,
+`/fold 2` every level-2 section, `/fold all` everything; `/expand` and
+`/expand all` undo it.
+
+## Find
+
+<kbd>⌘F</kbd> opens the search panel with find and replace. <kbd>⌘G</kbd>
+jumps to the next match.
+
+## Task lists
+
+A task list item looks like `- [ ] something` in the editor. You can tick
+it from the preview: clicking the checkbox there flips `[ ]` to `[x]` in
+the source, and that is a normal undoable edit.
+
+## Images
+
+Drop an image file on the editor or the preview, or paste one from the
+clipboard, and Marginal copies it into an `assets` folder next to the
+document and inserts a link such as `![name](assets/name.png)` at that
+spot. A drop on the preview lands at the matching line of the source.
+
+The document needs a file for this to work; with a new, unsaved document
+the status bar says *Save the document first to attach images*.
+
+## Zoom
+
+<kbd>⌘=</kbd> and <kbd>⌘-</kbd> zoom the text of both the editor and the
+preview, from 50 % to 300 %; <kbd>⌘0</kbd> goes back to 100 %. A pinch on
+the trackpad or <kbd>Ctrl</kbd> plus the scroll wheel does the same. The
+zoom is remembered, applies to the text only, and does not scale mermaid
+diagrams.
+
+The font sizes themselves are in **Settings ▸ Editor** and
+**Settings ▸ Preview**.
+
+## Line numbers and git changes
+
+Two gutters are off by default and live in **Settings ▸ Editor ▸ Gutter**:
+
+- **Line numbers**, to the left of the fold chevrons.
+- **Git changes**, which marks lines that differ from the committed file:
+  green for added, blue for changed, red where lines were removed. It can
+  compare against the last commit or the staging index, and refreshes when
+  you open, save, switch tabs, or come back to the window, never while you
+  type. Files outside a repository show nothing.
+
+## Keys
+
+The editor follows the keymap scheme in **Settings ▸ Editor ▸ Keybindings**:
+**Default**, **Emacs**, or **Vim**. You can also bind your own shortcuts to
+editor and application commands. Both are described in
+[Keybindings](../../reference/keybindings/).

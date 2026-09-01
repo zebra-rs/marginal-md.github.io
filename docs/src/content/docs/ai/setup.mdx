@@ -1,0 +1,44 @@
+---
+title: Connect your Anthropic key
+description: Marginal's AI features run on your own Anthropic API key, stored in the system keychain.
+sidebar: { order: 1 }
+---
+
+import Shot from '../../../components/Shot.astro';
+
+Marginal's AI features call Anthropic's API directly with a key that
+belongs to you. Usage is billed by Anthropic to that key; Marginal's
+subscription never gates the AI.
+
+## Add the key
+
+1. Create a key at
+   [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys).
+2. Open **Settings ▸ AI** (<kbd>⌘,</kbd>), paste the key into
+   **Anthropic API key**, and click **Save**.
+
+<Shot name="settings-ai" alt="The AI tab of Settings with the model and effort pickers and the API key field" caption="Settings ▸ AI. A saved key shows as dots; Clear removes it." />
+
+The key goes into the system keychain: the Keychain on macOS, Credential
+Manager on Windows, the Secret Service on Linux. It is read only inside
+Marginal's Rust process and never reaches the interface, a log, or a
+config file. **Clear** removes it again.
+
+Typing `/login` in the AI bar (<kbd>⌘K</kbd>) opens the console page and
+this settings tab together.
+
+## Model and effort
+
+**Model** picks the Claude model for requests. The default is
+`claude-opus-5`; `claude-sonnet-5` and `claude-haiku-4-5` are faster and
+cheaper. A model id you have set by other means is kept and listed too.
+
+**Effort** trades speed for reasoning: **low** is fastest, **high** is the
+default.
+
+## When something goes wrong
+
+The AI bar reports problems in place: a missing key, a key Anthropic
+rejects, a rate limit, a network failure, or a request the model declined.
+Each comes with the sensible next step, such as **Open Settings** or
+**Retry**.

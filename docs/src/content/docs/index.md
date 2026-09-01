@@ -7,10 +7,21 @@ Marginal is a native markdown editor for macOS, Windows, and Linux. One Rust
 markdown engine drives the editor, the preview, PDF export, and the context
 handed to the AI. Your files stay plain markdown on disk.
 
-This manual is being written. Start with the reference pages:
+## Where to start
 
-- [Keybindings](reference/keybindings/) — app shortcuts, the Default, Emacs,
-  and Vim keymap schemes, and custom shortcuts.
-- [Themes](reference/themes/) — installing and writing themes.
+- New to Marginal? [Install it](start/install/), then take
+  [a tour of the window](start/tour/).
+- Want the AI features? [Connect your Anthropic key](ai/setup/), then read
+  about [editing with AI](ai/editing/).
+- Looking something up? The [Settings](reference/settings/),
+  [Keybindings](reference/keybindings/), and [Themes](reference/themes/)
+  pages list everything.
+
+## A note on shortcuts
+
+Shortcuts in this manual are written the macOS way, with <kbd>⌘</kbd>. On
+Windows and Linux the same shortcuts use <kbd>Alt</kbd> instead, so
+<kbd>⌘K</kbd> is <kbd>Alt+K</kbd>. Ctrl is left to the editor there. The
+screenshots are from macOS.
 
 Looking for the app itself? See [marginal.md](https://marginal.md/).

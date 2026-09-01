@@ -58,6 +58,23 @@ to `_site/docs/` by the workflow, not to the artifact root.
   (shortcuts, settings, themes, menus) the page here is what gets updated;
   `~/marginal/docs/THEME_ADDONS.md` §8 remains the schema contract the
   Themes page is derived from.
+- **Screenshots** come from `docs/shots/shoot.sh` (macOS only): it copies
+  `docs/shots/fixture/` to `/Users/Shared/Notes`, launches the installed
+  app through LaunchServices with `--appearance light|dark`, drives it
+  through its menus (System Events) and by coordinate clicks (`click.swift`;
+  the webview exposes no usable AX tree), captures with `screencapture -l`
+  and writes `docs/src/assets/shots/<scene>.png` + `<scene>-dark.png`. It
+  backs up and restores `~/Library/Application Support/md.marginal/`,
+  blanking recents for the run. Quit Marginal first. Pages embed a pair via
+  `<Shot name="…" alt="…" />` (`docs/src/components/Shot.astro`, MDX only);
+  keep `.shot img` free of `display:` — Starlight's `light:/dark:sl-hidden`
+  utilities live in a cascade layer and lose to unlayered rules.
+- Pages that need `<Shot>` are `.mdx`; everything else stays `.md`.
+- Two app quirks the script works around (worth fixing in the app):
+  ⌘⇧K with the editor focused runs CodeMirror's delete-line instead of
+  Ask About Selection (the manual carries a caution); and an app started
+  from its binary path takes its window off screen ~2 s after any
+  LaunchServices activation.
 - `/docs/` is **outside** the password gate on the root `index.html`; the
   manual is public the moment it deploys.
 

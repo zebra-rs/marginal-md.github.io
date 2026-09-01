@@ -1,0 +1,31 @@
+---
+title: The terminal panel
+description: A shell below the editor, started in your workspace.
+sidebar: { order: 1 }
+---
+
+import Shot from '../../../components/Shot.astro';
+
+**View ▸ Terminal** (<kbd>⌘J</kbd>) opens a shell in a panel below the
+editor and preview, starting in the workspace folder.
+
+<Shot name="terminal" alt="A terminal panel below the editor and preview, with a shell prompt in the workspace folder" caption="The terminal opens in the workspace folder." />
+
+## Using it
+
+The panel runs your usual shell: whatever `$SHELL` is on macOS and Linux
+(as a login shell on macOS), and PowerShell on Windows, falling back to
+Windows PowerShell or the command prompt. It starts in the workspace root
+or, with no workspace, in the folder of the current document.
+
+Drag the top edge to change the panel's height; Marginal remembers it.
+
+## Hiding and closing
+
+<kbd>⌘J</kbd> hides the panel but leaves the shell running, so whatever
+you started keeps going and is still there when you show the panel again.
+Typing `exit` ends the session.
+
+There is one terminal, without tabs or splits, and it is not available in
+the [reading view](../../writing/reading-view/). If the shell cannot be
+started, the status bar says *Terminal failed* with the reason.

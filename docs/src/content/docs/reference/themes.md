@@ -1,5 +1,6 @@
 ---
 title: Themes
+sidebar: { order: 2 }
 description: Installing and writing themes.
 ---
 

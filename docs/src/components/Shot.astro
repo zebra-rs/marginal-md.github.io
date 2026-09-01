@@ -1,0 +1,28 @@
+---
+// A screenshot from docs/shots/shoot.sh, shown in the reader's theme:
+// <name>.png for light, <name>-dark.png for dark (falls back to the light
+// one when no dark shot exists). Astro resizes and converts the PNGs.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  name: string;
+  alt: string;
+  caption?: string;
+}
+const { name, alt, caption } = Astro.props;
+
+const shots = import.meta.glob<{ default: ImageMetadata }>('/src/assets/shots/*.png', { eager: true });
+const light = shots[`/src/assets/shots/${name}.png`]?.default;
+const dark = shots[`/src/assets/shots/${name}-dark.png`]?.default;
+if (!light) throw new Error(`Shot: no screenshot named "${name}" in src/assets/shots/`);
+
+const widths = [720, 1440, 2160];
+const sizes = '(min-width: 72rem) 45rem, calc(100vw - 2rem)';
+---
+
+<figure class="shot">
+  <Image src={light} alt={alt} widths={widths} sizes={sizes} class={dark ? 'dark:sl-hidden' : undefined} />
+  {dark && <Image src={dark} alt={alt} widths={widths} sizes={sizes} class="light:sl-hidden" />}
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
