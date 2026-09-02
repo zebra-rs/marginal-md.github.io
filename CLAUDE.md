@@ -48,6 +48,18 @@ to `_site/docs/` by the workflow, not to the artifact root.
 - Sidebar groups are `autogenerate`d from directories in
   `docs/astro.config.mjs` (Starlight ≥ 0.39 shape:
   `{ label, items: [{ autogenerate: { directory } }] }`).
+- **Coding agents** (`docs/src/content/docs/agents/`, the group right after
+  *Start here* — deliberately prominent, it is the feature) is one overview
+  plus one page per agent (Claude Code, Codex, Grok Build, OpenCode,
+  Cursor, Qwen Code). Each page's "What Marginal lists" table mirrors, row
+  for row, that agent's `AgentSpec` in the app repo
+  (`crates/marginal-core/src/workspace/agents.rs`, `CATALOG`); a change on
+  either side is a change on both. The "How X uses these files" notes and
+  the "Not listed" lists came from each agent's official docs, checked
+  2026-09-01 — say so at the foot of the page, and re-check before
+  claiming anything newer. `GROK.md` and `.qwen/QWEN.md` are *not* read by
+  their agents (documented, not oversight); Codex `.rules` files are
+  execution policy, not prompts.
 - Palette: `docs/src/styles/custom.css` maps Starlight's `--sl-color-*`
   variables to the tokens in `assets/site.css`; change both together.
 - **This repo is the source of truth for user-facing documentation**

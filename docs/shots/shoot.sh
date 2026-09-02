@@ -4,7 +4,8 @@
 #   docs/shots/shoot.sh [light|dark|both]        (default: both)
 #
 # Copies the fixture workspace to /Users/Shared/Notes (a path with no user
-# name in it), launches /Applications/Marginal.app on it with a fixed window
+# name in it — it also carries a Claude Code and a Codex layout, for the
+# coding-agent scenes), launches /Applications/Marginal.app on it with a fixed window
 # size, drives it through its menus and accessibility tree via System
 # Events, captures the window with `screencapture -l`, and writes Retina
 # PNGs to src/assets/shots/: <scene>.png for the light appearance,
@@ -146,8 +147,10 @@ backup_conf() {
   BAK="$(mktemp -d)"
   [ -d "$CONF" ] && cp -R "$CONF" "$BAK/md.marginal"
   # Blank the recent-file/folder lists so the Welcome screen and the Open
-  # Recent menus show nothing of yours. (Restored with the rest afterwards.)
-  [ -f "$CONF/settings.json" ] && python3 - "$CONF/settings.json" "$WORK" <<'PY'
+  # Recent menus show nothing of yours, and shoot with the default coding
+  # agent and folded sections. (Restored with the rest afterwards.)
+  [ -f "$CONF/settings.json" ] || echo '{}' > "$CONF/settings.json"
+  python3 - "$CONF/settings.json" "$WORK" <<'PY'
 import json, sys
 path = sys.argv[1]
 with open(path) as f:
@@ -155,8 +158,9 @@ with open(path) as f:
 for k, v in list(d.items()):
     if "recent" in k.lower() and isinstance(v, list):
         d[k] = []
-if "lastWorkspace" in d:
-    d["lastWorkspace"] = sys.argv[2]
+d["lastWorkspace"] = sys.argv[2]
+d["codingAgent"] = "claude-code"
+d["unfoldAgentSections"] = False
 with open(path, "w") as f:
     json.dump(d, f, indent=2)
 PY
@@ -164,6 +168,20 @@ PY
   printf '{"main":{"width":%d,"height":%d,"x":80,"y":80,"maximized":false,"visible":true,"decorated":true,"fullscreen":false}}\n' \
     $((W * 2)) $((H * 2)) > "$CONF/.window-state.json"
   return 0
+}
+# set_pref <key> <json value> — patch one setting for the next launch, e.g.
+# set_pref codingAgent '"codex"' or set_pref unfoldAgentSections true. The
+# backup restores the real value afterwards.
+set_pref() {
+  python3 - "$CONF/settings.json" "$1" "$2" <<'PY'
+import json, sys
+path, key, value = sys.argv[1], sys.argv[2], json.loads(sys.argv[3])
+with open(path) as f:
+    d = json.load(f)
+d[key] = value
+with open(path, "w") as f:
+    json.dump(d, f, indent=2)
+PY
 }
 restore_conf() {
   [ -n "$BAK" ] || return 0
@@ -213,6 +231,14 @@ scenes_workspace() {
   esc
 }
 
+# The fixture carries both a Claude Code layout (CLAUDE.md, .claude/…) and a
+# Codex one (AGENTS.md, .agents/skills/…); the same folder is shot once per
+# agent, with the sections unfolded through the pref rather than by clicking
+# five headers.
+scenes_agents() {
+  shot "$1"
+}
+
 scenes_welcome() {
   shot welcome
 }
@@ -236,6 +262,16 @@ for appearance in $([ "$mode" = both ] && echo "light dark" || echo "$mode"); do
   run_app "$appearance" fixed "$WORK" "$WORK/Welcome.md"
   scenes_workspace
   quit_app
+  set_pref unfoldAgentSections true
+  run_app "$appearance" fixed "$WORK" "$WORK/Welcome.md"
+  scenes_agents agent-sections
+  quit_app
+  set_pref codingAgent '"codex"'
+  run_app "$appearance" fixed "$WORK" "$WORK/Welcome.md"
+  scenes_agents agent-sections-codex
+  quit_app
+  set_pref codingAgent '"claude-code"'
+  set_pref unfoldAgentSections false
   run_app "$appearance" fixed "$WORK"
   scenes_welcome
   quit_app

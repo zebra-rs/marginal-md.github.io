@@ -35,6 +35,7 @@ Pages live in `src/content/docs/`, one folder per sidebar group:
 | Folder | Sidebar group |
 |---|---|
 | `start/` | Start here |
+| `agents/` | Coding agents — one page per agent, mirroring `crates/marginal-core/src/workspace/agents.rs` in the app repo |
 | `files/` | Files |
 | `writing/` | Writing |
 | `ai/` | AI |

@@ -24,8 +24,11 @@ The terminal running the script needs **Screen Recording** and
 
 ## Adding a scene
 
-Scenes live in `shoot.sh` under `scenes_workspace` (the normal window) and
-`scenes_reader` (the `--reader` window). Reach the state with `key`, `menu`
+Scenes live in `shoot.sh` under `scenes_workspace` (the normal window),
+`scenes_agents` (the same window with a coding agent's sections unfolded —
+the fixture carries both a Claude Code and a Codex layout, and `set_pref`
+switches the agent between launches), `scenes_welcome`, and `scenes_reader`
+(the `--reader` window). Reach the state with `key`, `menu`
 or `type_text`, then call `shot <name>`; keep names stable, the manual
 references them by file name. Menu titles can be listed with:
 

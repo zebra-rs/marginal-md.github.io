@@ -1,0 +1,115 @@
+---
+title: Your coding agent
+description: Pick the coding agent you work with, and Marginal lists its instruction files, rules, skills, sub-agents, and commands from the folders that agent reads.
+sidebar: { order: 1 }
+---
+
+{/* Screenshots: `agent-sections` and `agent-sections-codex` are scenes in
+    shots/shoot.sh; add the <Shot> tags back once they have been shot:
+    import Shot from '../../../components/Shot.astro'; */}
+
+A coding agent is steered by files: an instruction file at the root of the
+project, rules that apply to some paths, skills it can invoke, sub-agents it
+can delegate to, commands you can call. They are markdown, they live in the
+repository, and they are the most consequential prose most developers write
+now. Marginal is built to edit them.
+
+Every agent keeps those files in different places, under different names.
+Marginal knows the layout of six of them. Tell it which one you use, and the
+file list shows exactly the files that agent will read, from the workspace
+and from your home folder, each opened with a click.
+
+## Choosing the agent
+
+Open **Settings ▸ General ▸ Coding agent** and pick one:
+
+| Agent | Made by | Instruction file | Page |
+|---|---|---|---|
+| Claude Code | Anthropic | `CLAUDE.md` | [Claude Code](../claude-code/) |
+| Codex | OpenAI | `AGENTS.md` | [Codex](../codex/) |
+| Grok Build | xAI | `AGENTS.md` | [Grok Build](../grok/) |
+| OpenCode | open source | `AGENTS.md` | [OpenCode](../opencode/) |
+| Cursor | Anysphere | `AGENTS.md` and `.cursor/rules` | [Cursor](../cursor/) |
+| Qwen Code | Alibaba | `QWEN.md` | [Qwen Code](../qwen-code/) |
+
+Claude Code is the default. The choice is saved in your settings and applies
+to every workspace. Unfold **Where … looks for its files** under the
+setting to see every folder the selected agent reads without leaving the
+app; it also links to the agent's page here.
+
+Changing the agent rescans the open workspace at once. You do not need to
+reopen the folder.
+
+## What appears in the file list
+
+Below **MARKDOWN**, a caption names the agent and up to five sections follow:
+
+- the **instruction file** section, titled with the agent's own name for it:
+  **CLAUDE.md**, **AGENTS.md**, or **QWEN.md**;
+- **RULES**, for agents that have a rules folder;
+- **SKILLS**, one entry per `SKILL.md`;
+- **AGENTS**, the sub-agent definitions;
+- **COMMANDS**, custom commands or prompts, shown as `/name`.
+
+A section is only there when it has entries. Each entry shows the name from
+the file's front matter when it has one, its description as a second line,
+and a badge:
+
+| Badge | Meaning |
+|---|---|
+| *project* | In the workspace, shared with everyone who clones it |
+| *local* | In the workspace but yours alone: `CLAUDE.local.md`, `.qwen/QWEN.local.md` |
+| *user* | In your home folder, applied to every project |
+
+Project entries come first, then local, then user. The sections start
+collapsed; **Settings ▸ General ▸ Unfold agent sections** opens them by
+default, and the [file filter](../../files/finding-files/) opens them while
+you type.
+
+Switching the agent changes what is listed, not what is on disk. A folder
+that carries both a `CLAUDE.md` and an `AGENTS.md` shows one or the other,
+depending on which agent you picked.
+
+## Where the files come from
+
+Each agent page lists the exact folders, but the pattern is the same for
+all of them:
+
+- **In the workspace.** The instruction file at the root and in any
+  subfolder (agents load nested ones when they work in that folder), and
+  the agent's own dot-folder at the root: `.claude`, `.codex`, `.grok`,
+  `.opencode`, `.cursor`, or `.qwen`. Some agents also read the shared
+  `.agents/skills` convention, and some read another agent's folders for
+  compatibility; those are listed under the agent that reads them.
+- **In your home folder.** The same layout under `~/.claude`, `~/.codex`,
+  and so on, for files that apply to every project. If the agent has an
+  environment variable that moves that folder, such as `CLAUDE_CONFIG_DIR`
+  or `CODEX_HOME`, Marginal honours it when it is set in the environment
+  Marginal was started from. An app launched from the Dock or the Start
+  menu sees a different environment from a terminal.
+- **Nested folders.** Where an agent looks for its dot-folder in every
+  directory, not just the root, Marginal does too, and the entry's name
+  carries the folder: `packages/api/style.mdc`.
+
+Marginal never writes to these folders on its own. It lists what is there
+and opens it in a tab; saving is the same as for any other file.
+
+## Files that are not markdown
+
+Cursor rules are `.mdc`, Codex sub-agents and execution rules are `.toml`
+and `.rules`, and Qwen Code still reads its older `.toml` commands. Marginal
+lists them because the agent reads them, and opens them in the editor as
+plain text. The preview treats them as markdown, which is right for `.mdc`
+and of little use for the others.
+
+## What is not listed
+
+Settings files, hooks, MCP server configuration, plugins, memories written
+by the agent, and managed or enterprise paths under `/etc` or
+`/Library/Application Support` are not context files and stay out of the
+list. Each agent page ends with a short list of what it leaves out.
+
+The folders Marginal scans were checked against each agent's official
+documentation on 1 September 2026. Agents move fast, so each page says what
+was documented, what is still read but deprecated, and what is no longer
+read at all.

@@ -21,6 +21,7 @@ export default defineConfig({
       },
       sidebar: [
         { label: 'Start here', items: [{ autogenerate: { directory: 'start' } }] },
+        { label: 'Coding agents', items: [{ autogenerate: { directory: 'agents' } }] },
         { label: 'Files', items: [{ autogenerate: { directory: 'files' } }] },
         { label: 'Writing', items: [{ autogenerate: { directory: 'writing' } }] },
         { label: 'AI', items: [{ autogenerate: { directory: 'ai' } }] },
