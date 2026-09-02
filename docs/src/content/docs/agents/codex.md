@@ -8,7 +8,7 @@ sidebar: { order: 3 }
 instructions are `AGENTS.md` files; skills follow the open `.agents/skills`
 convention; custom agents and execution rules live in `.codex` folders.
 
-Select it in **Settings ▸ General ▸ Coding agent**.
+Select it in **Settings ▸ AI ▸ Coding agent**.
 
 ## What Marginal lists
 

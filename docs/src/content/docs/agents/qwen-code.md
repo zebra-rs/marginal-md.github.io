@@ -8,7 +8,7 @@ sidebar: { order: 7 }
 coding agent. Its context file is `QWEN.md`, with `AGENTS.md` as a second
 name, and its skills, sub-agents, and commands live in `.qwen` folders.
 
-Select it in **Settings ▸ General ▸ Coding agent**.
+Select it in **Settings ▸ AI ▸ Coding agent**.
 
 ## What Marginal lists
 

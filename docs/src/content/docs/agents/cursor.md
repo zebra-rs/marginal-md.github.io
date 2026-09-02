@@ -9,7 +9,7 @@ agent, `cursor-agent`, that reads the same files. Its rules are `.mdc`
 files in `.cursor/rules`; it also reads `AGENTS.md`, `CLAUDE.md`, and
 several other agents' skill and sub-agent folders.
 
-Select it in **Settings ▸ General ▸ Coding agent**.
+Select it in **Settings ▸ AI ▸ Coding agent**.
 
 ## What Marginal lists
 

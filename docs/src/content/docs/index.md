@@ -14,7 +14,7 @@ rules, skills, sub-agents, commands. Marginal finds them where **your** agent
 looks for them and lists them beside your notes, so you edit the agent's
 instructions with the same preview, AI help, and export as everything else.
 
-Pick the agent in **Settings ▸ General ▸ Coding agent**. Claude Code is the
+Pick the agent in **Settings ▸ AI ▸ Coding agent**. Claude Code is the
 default; Codex, Grok Build, OpenCode, Cursor, and Qwen Code are the others,
 and each has a page here that lists every folder it reads:
 

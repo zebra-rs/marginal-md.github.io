@@ -9,7 +9,7 @@ sidebar: { order: 4 }
 Codex, keeps its own files in `.grok` folders, and reads Claude Code's and
 Cursor's folders for compatibility.
 
-Select it in **Settings ▸ General ▸ Coding agent**.
+Select it in **Settings ▸ AI ▸ Coding agent**.
 
 ## What Marginal lists
 

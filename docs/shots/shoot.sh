@@ -87,14 +87,15 @@ click_in_window() {
   nap 0.5
 }
 
-# settings_tab <Account|General|Appearance|Editor|Preview|AI>
+# settings_tab <AI|General|Appearance|Editor|Preview|Account>
 # The Settings panel is centred in the window, so at 1280×800 its category
-# strip sits at these window-relative points. Re-measure if the panel moves.
+# strip sits at these window-relative points (AI first, Account last since
+# 0.9.9). Re-measure if the panel moves.
 settings_tab() {
   local y
   case "$1" in
-    Account) y=201 ;; General) y=234 ;; Appearance) y=267 ;;
-    Editor) y=301 ;; Preview) y=334 ;; AI) y=367 ;;
+    AI) y=201 ;; General) y=234 ;; Appearance) y=267 ;;
+    Editor) y=301 ;; Preview) y=334 ;; Account) y=367 ;;
     *) die "unknown settings tab: $1" ;;
   esac
   click_in_window 330 "$y"
@@ -223,11 +224,12 @@ scenes_workspace() {
   menu AI "Ask About Selection…";    shot ai-ask
   esc
 
-  menu Marginal "Settings…";         shot settings-general
+  # Settings opens on the AI tab (0.9.9).
+  menu Marginal "Settings…";         shot settings-ai
+  settings_tab General;              shot settings-general
   settings_tab Appearance;           shot settings-appearance
   settings_tab Editor;               shot settings-editor
   settings_tab Preview;              shot settings-preview
-  settings_tab AI;                   shot settings-ai
   esc
 }
 

@@ -16,14 +16,13 @@ Settings are saved in `settings.json` in the
 Pane widths, the terminal height, and the zoom level are remembered per
 machine, outside that file.
 
-## Account
+## AI
 
-Sign in, subscribe, manage devices, and see your licence status. This tab
-is described on [Account and subscription](../../more/account/).
+<Shot name="settings-ai" alt="The AI tab of Settings" />
 
-## General
-
-<Shot name="settings-general" alt="The General tab of Settings" />
+The first tab, and the one Settings opens on. It holds the coding agent
+whose files the file list shows, and the Claude model Marginal's own AI
+features use.
 
 **Coding agent**
 
@@ -32,6 +31,34 @@ is described on [Account and subscription](../../more/account/).
 | Agent | Claude Code | Whose files the file list shows: Claude Code, Codex, Grok Build, OpenCode, Cursor, or Qwen Code. See [Your coding agent](../../agents/overview/) |
 | Where … looks for its files | folded | Folds open to list every folder the selected agent reads, the environment variable that relocates its user folder, and a link to the agent's page in this manual; stays the way you left it |
 | Unfold agent sections | off | Open the agent's sections in the file list by default |
+
+**Model**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Model | claude-opus-5 | The Claude model for requests |
+| Effort | high | low, medium, or high |
+
+**API key**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Anthropic API key | | Saved to the system keychain; **Clear** removes it |
+
+See [Connect your Anthropic key](../../ai/setup/).
+
+## General
+
+<Shot name="settings-general" alt="The General tab of Settings" />
+
+**Font**
+
+| Setting | Default | What it does |
+|---|---|---|
+| Interface font size | 13 | Text size of the sidebar, the file list, and the Settings window itself |
+
+The editor and the preview have their own sizes under **Editor** and
+**Preview**.
 
 **Files**
 
@@ -70,12 +97,6 @@ is described on [Account and subscription](../../more/account/).
 Ten themes are built in: Marginal, GitHub, Solarized, Zenburn, and Dracula,
 each in a light and a dark version. Add-ons appear below them under their
 own heading.
-
-**Interface**
-
-| Setting | Default | What it does |
-|---|---|---|
-| Sidebar & list font size | 13 | Text size of the sidebar and file list |
 
 **Window** (macOS only)
 
@@ -137,14 +158,7 @@ command. See [Keybindings](../keybindings/#custom-shortcuts).
 | Print margin (mm) | 8 | Extra left and right margin on paper and in PDFs |
 | Print header offset (mm) | 8 | Extra space at the top of each page |
 
-## AI
+## Account
 
-<Shot name="settings-ai" alt="The AI tab of Settings" />
-
-| Setting | Default | What it does |
-|---|---|---|
-| Model | claude-opus-5 | The Claude model for requests |
-| Effort | high | low, medium, or high |
-| Anthropic API key | | Saved to the system keychain; **Clear** removes it |
-
-See [Connect your Anthropic key](../../ai/setup/).
+Sign in, subscribe, manage devices, and see your licence status. This tab
+is described on [Account and subscription](../../more/account/).

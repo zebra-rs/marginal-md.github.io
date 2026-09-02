@@ -8,7 +8,7 @@ sidebar: { order: 5 }
 agent. Its instructions are `AGENTS.md`; skills, agents, and commands live
 in `.opencode` folders in the project and in `~/.config/opencode`.
 
-Select it in **Settings ▸ General ▸ Coding agent**.
+Select it in **Settings ▸ AI ▸ Coding agent**.
 
 ## What Marginal lists
 

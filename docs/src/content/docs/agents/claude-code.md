@@ -8,7 +8,7 @@ sidebar: { order: 2 }
 Marginal's default. Its context lives in `CLAUDE.md` files and a `.claude`
 folder, in the project and in your home directory.
 
-Select it in **Settings ▸ General ▸ Coding agent**.
+Select it in **Settings ▸ AI ▸ Coding agent**.
 
 ## What Marginal lists
 
