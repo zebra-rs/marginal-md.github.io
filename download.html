@@ -217,7 +217,7 @@
         a.querySelector('.size').textContent = mb(asset.size);
       });
       var version = (rel.tag_name || '').replace(/^v/, '') || rel.name;
-      var date = rel.published_at ? new Date(rel.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+      var date = rel.published_at ? new Date(rel.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }) : '';
       $('rec-meta').textContent = 'Version ' + version + (date ? ', released ' + date : '');
       var primary = primaryMatch && found[primaryMatch];
       if (primary) {
