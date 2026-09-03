@@ -86,14 +86,14 @@
         <p class="req">x86_64 and aarch64 · not signed</p>
         <div class="files-k">x86_64</div>
         <ul class="files">
-          <li><a data-match="appimage-x64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.AppImage</span><span class="size"></span></a></li>
           <li><a data-match="deb-x64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.deb</span><span class="size"></span></a></li>
+          <li><a data-match="appimage-x64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.AppImage</span><span class="size"></span></a></li>
           <li><a data-match="rpm-x64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.rpm</span><span class="size"></span></a></li>
         </ul>
         <div class="files-k">aarch64</div>
         <ul class="files">
-          <li><a data-match="appimage-arm64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.AppImage</span><span class="size"></span></a></li>
           <li><a data-match="deb-arm64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.deb</span><span class="size"></span></a></li>
+          <li><a data-match="appimage-arm64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.AppImage</span><span class="size"></span></a></li>
           <li><a data-match="rpm-arm64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.rpm</span><span class="size"></span></a></li>
         </ul>
       </div>
@@ -171,7 +171,7 @@
     'rpm-arm64': /\.aarch64\.rpm$/i
   };
   var LABEL = { mac: 'macOS', win: 'Windows', linux: 'Linux' };
-  var PRIMARY = { mac: 'dmg', win: 'exe', 'linux-x64': 'appimage-x64', 'linux-arm64': 'appimage-arm64' };
+  var PRIMARY = { mac: 'dmg', win: 'exe', 'linux-x64': 'deb-x64', 'linux-arm64': 'deb-arm64' };
 
   function detect() {
     var uad = navigator.userAgentData;
