@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markdown Editors Weren't Built for Coding Agents, So I Made One — Marginal</title>
+<meta name="description" content="Why Marginal exists: a markdown editor that finds the skills, rules, and commands in effect for your coding agent, with inline AI, a terminal, reading mode, Emacs and Vim keys, and ten themes.">
+<link rel="canonical" href="https://marginal.md/blog.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Marginal">
+<meta property="og:title" content="Markdown Editors Weren't Built for Coding Agents, So I Made One">
+<meta property="og:description" content="Why Marginal exists, and the six things it does.">
+<meta property="og:url" content="https://marginal.md/blog.html">
+<meta property="og:image" content="https://marginal.md/assets/og.png">
+<meta property="article:published_time" content="2026-09-02">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/marginal-icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+(function(){try{var t=new URLSearchParams(location.search).get('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <a class="brand" href="index.html"><img src="assets/marginal-icon.svg" alt="" width="28" height="28"><span>Marginal</span></a>
+    <nav class="nav" aria-label="Site">
+      <a href="pricing.html">Pricing</a>
+      <a href="download.html">Download</a>
+      <a href="docs/">Manual</a>
+      <a href="blog.html" aria-current="page">Blog</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article class="article">
+  <p class="eyebrow">Blog</p>
+  <h1>Markdown Editors Weren't Built for Coding Agents, So I Made One</h1>
+  <p class="meta">Kunihiro Ishiguro · <time datetime="2026-09-02">September 2, 2026</time></p>
+
+  <p>Like many engineers, I use coding agents heavily every day, mainly Claude Code. They are amazing tools for expanding what an engineer can do. I can no longer imagine doing my development work without them.</p>
+
+  <p>These days I have coding agents write dev plans, run security audits, generate BDD test cases, and more. For each plan and audit, I have the agent write down the plan or the audit results in markdown. On top of that, I periodically maintain <code>CLAUDE.md</code> and try out other engineers' amazing skills. As a result, I now have an overwhelming number of markdown documents, sometimes more than 100, scattered across different subdirectories.</p>
+
+  <p>Worse, I've completely lost track of which skills are currently available, which sub-agents are installed, and which rules are in effect. Some are project-local; some are shared across my account on a specific machine. I also occasionally try other coding agents like Codex and OpenCode, and each of them searches different paths.</p>
+
+  <p>Editing <code>SKILL.md</code> files brings another problem: they use a special markdown format with YAML front matter containing mandatory fields such as <code>name</code> and <code>description</code>. I want an editor that understands this structure and highlights it properly.</p>
+
+  <p>So I went looking for a markdown editor that understands coding-agent culture, one that can find the currently effective skills, rules, and commands for whichever coding agent I'm using.</p>
+
+  <p>Unfortunately, I couldn't find anything that met these requirements. Today's markdown editors work perfectly for note-taking or getting things done, but not for coding agents.</p>
+
+  <p>So I decided to build one. Here are the features I've implemented. I hope you like them too.</p>
+
+  <h2><span class="num">1.</span>Automatic discovery of your coding agent's skills, rules, and commands</h2>
+
+  <p>Of course, this is the number one feature I needed. Based on the selected coding agent (Claude Code by default), Marginal automatically finds the currently effective <code>CLAUDE.md</code> or <code>AGENTS.md</code>, along with the skills, rules, sub-agents, and commands, and lists them in the sidebar. You no longer lose track of which ones are in effect for the current project.</p>
+
+  <figure class="frame dark">
+    <img src="assets/shots/agent-list.png" width="900" height="830" loading="lazy" alt="The sidebar listing the workspace's markdown files, then the CLAUDE CODE caption with CLAUDE.md badged project and a SKILLS section listing clean-branch, merge-pr, and sync-pr, each badged user.">
+  </figure>
+
+  <h2><span class="num">2.</span>Finding markdown files in subdirectories</h2>
+
+  <p>This is an opt-in feature, but if you have a lot of markdown files under subdirectories, you will probably want it. Turn on "List files in subfolders" in Settings, and the list shows every markdown file under the selected directory.</p>
+
+  <p>In the filter box at the top of the list, you can type part of a file's path, including <code>/</code> to match a directory, to narrow down the file you need. Go to File (⌘T) does the same thing to open a file directly.</p>
+
+  <h2><span class="num">3.</span>Two AI interfaces</h2>
+
+  <p>The first one is inside the editor. Select some text, press ⌘K, and tell the AI what to do with it. The rewrite streams in as an inline diff, and you accept or reject it as a single undo step. It runs on your own API key, and you pick the provider and model in Settings: Anthropic, OpenAI, Google, xAI, or Alibaba Cloud.</p>
+
+  <figure class="frame">
+    <picture>
+      <source srcset="assets/shots/ai-edit-dark.webp" media="(prefers-color-scheme: dark)">
+      <img src="assets/shots/ai-edit.webp" width="1600" height="1000" loading="lazy" alt="The AI edit bar over the editor, asking how the selection should change, with presets such as Improve the writing and Make it more concise.">
+    </picture>
+  </figure>
+
+  <p>The second one is the coding agent in the terminal, as usual. ⌘J opens a terminal panel below the editor, so you can run <code>claude</code> or <code>codex</code> right there. When the agent writes to a file you have open, Marginal notices and offers to reload it, and a new skill it saves appears in the SKILLS section without reopening the folder.</p>
+
+  <h2><span class="num">4.</span>Read &amp; export</h2>
+
+  <p>Double-click a markdown file in the Finder and Marginal opens it in reading mode, which shows only the preview pane so you can focus on reading. From there you can export the file directly as PDF or HTML. Press Esc to return to the normal editing mode.</p>
+
+  <figure class="frame">
+    <picture>
+      <source srcset="assets/shots/reader-dark.webp" media="(prefers-color-scheme: dark)">
+      <img src="assets/shots/reader.webp" width="1600" height="1293" loading="lazy" alt="The reading view: a rendered document with a table and a footnote in a window with no editor chrome.">
+    </picture>
+  </figure>
+
+  <h2><span class="num">5.</span>Emacs/Vim editing modes with custom key mapping</h2>
+
+  <p>The editing mode can be set to Default, Emacs, or Vim, and the status bar shows which one is on. Yes, I'm an Emacs guy, so I need <kbd>Ctrl-S</kbd> "readme" <kbd>Ctrl-S</kbd> <kbd>Ctrl-S</kbd> <kbd>Ctrl-G</kbd> to land on the third occurrence of "readme". Vim users get <code>/</code>, <code>?</code>, <code>n</code>, and <code>N</code> the way they expect, with the Vim mode shown in the status bar as well.</p>
+
+  <h2><span class="num">6.</span>Dark mode and themes, including your own</h2>
+
+  <p>Like any modern application, Marginal supports dark mode. Ten themes are built in, in five light/dark pairs: Marginal, GitHub, Solarized, Zenburn, and Dracula. A theme is a single JSON file, so you can install your own custom theme, and Marginal loads it on the fly without a restart.</p>
+
+  <h2>One last thing</h2>
+
+  <p>Marginal was built the way it is meant to be used: with Claude Code, plan files, rules, and skills in the repository, edited in Marginal itself once it could open them. It runs on macOS, Windows, and Linux, and you can download it from <a href="download.html">marginal.md</a>. The manual is at <a href="docs/">marginal.md/docs</a>. Editing needs a subscription after the trial; the AI features run on your own API key and are never gated. If your coding agent keeps its files somewhere Marginal doesn't look yet, tell me, and it becomes a row in a table.</p>
+
+  <p class="end">Marginal is $10 a month or $96 a year, with a 14-day trial and no card. <a href="pricing.html">Pricing</a> · <a href="download.html">Download</a></p>
+</article>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="col-brand">
+      <a class="brand" href="index.html"><img src="assets/marginal-icon.svg" alt="" width="22" height="22">Marginal</a>
+      <p>The markdown editor for coding agents. Plain files on your disk, native on macOS, Windows, and Linux.</p>
+      <p>© 2026 Kunihiro Ishiguro</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <ul>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <ul>
+        <li><a href="docs/">Manual</a></li>
+        <li><a href="docs/agents/overview/">Coding agents</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){var t=document.documentElement.getAttribute('data-theme');if(!t)return;document.querySelectorAll('picture > source[media]').forEach(function(s){if(t==='dark')s.setAttribute('media','all');else s.remove();});})();
+</script>
+</body>
+</html>

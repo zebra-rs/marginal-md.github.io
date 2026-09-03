@@ -7,6 +7,6 @@
     <path d="M57.37 82.00H62.20V65.26C62.20 62.22 61.79 57.85 61.47 54.77H61.65L64.36 62.59L70.30 78.73H73.61L79.50 62.59L82.21 54.77H82.44C82.12 57.85 81.71 62.22 81.71 65.26V82.00H86.67V48.10H80.46L74.39 65.26C73.66 67.46 72.97 69.81 72.18 72.06H71.95C71.22 69.81 70.48 67.46 69.70 65.26L63.54 48.10H57.37Z" fill="#faf6ef"/>
   </g>
   <text x="410" y="330" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="-3" fill="#faf6ef">Marginal</text>
-  <text x="414" y="400" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="33" fill="#faf6ef" fill-opacity="0.66">The markdown editor for Claude Code</text>
+  <text x="414" y="400" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="33" fill="#faf6ef" fill-opacity="0.66">The markdown editor for coding agents</text>
   <text x="414" y="560" font-family="Menlo, monospace" font-size="24" fill="#faf6ef" fill-opacity="0.4">marginal.md</text>
 </svg>

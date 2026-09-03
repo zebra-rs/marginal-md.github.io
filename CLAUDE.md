@@ -20,8 +20,9 @@ Claims that must stay true on every page:
 - Pricing: **$10/mo or $96/yr**, one plan, 14-day trial, **no card**.
 - A lapsed subscription = **read-only, never locked files** (reading,
   preview, PDF export, and saving already-modified buffers keep working).
-- AI = the customer's **own Anthropic key**, stored in the OS keychain,
-  **never a license gate**.
+- AI = the customer's **own API key** (Anthropic, OpenAI, Google, xAI, or
+  Alibaba Cloud; see the manual's *Connect an API key*), stored in the OS
+  keychain, **never a license gate**.
 - No invented artifacts, sizes, package managers, or signing claims.
   Windows is *not* Authenticode-signed; macOS is notarized by `release.yml`.
 
@@ -61,7 +62,7 @@ to `_site/docs/` by the workflow, not to the artifact root.
   their agents (documented, not oversight); Codex `.rules` files are
   execution policy, not prompts.
 - Palette: `docs/src/styles/custom.css` maps Starlight's `--sl-color-*`
-  variables to the tokens in `assets/site.css`; change both together.
+  variables to the tokens in `assets/style.css`; change both together.
 - **This repo is the source of truth for user-facing documentation**
   (decided 2026-09-01). The two reference pages were seeded from the app
   repo's `docs/KEYBINDINGS.md` and `THEMES.md`, which were then deleted
@@ -87,20 +88,22 @@ to `_site/docs/` by the workflow, not to the artifact root.
   Ask About Selection (the manual carries a caution); and an app started
   from its binary path takes its window off screen ~2 s after any
   LaunchServices activation.
-- `/docs/` is **outside** the password gate on the root `index.html`; the
-  manual is public the moment it deploys.
 
 ## Workflow
 
-- Copy/fact changes: edit `index.html` / `download.html` directly (plain
-  HTML/CSS + small inline JS; shared styles in `assets/site.css`).
-- Visual redesign: happens in Claude Design; the canvas export lives in
-  `design/` (`*.dc.html` + `support.js` + `_ds/`); re-bake the static pages
-  by hand from it, carrying the fact fixes forward — the canvas may lag.
-  The claude.ai/design **"Marginal" design-system project** (tokens +
-  `guidelines/brand.md`) is reachable via `/design-login` + DesignSync.
-- Test params: `?theme=light|dark` forces a theme, `?noanim=1` renders the
-  finished state (typing demo + reveals off) — use for screenshots.
+- The site (rebuilt from scratch 2026-09-02, structure modelled on
+  inkdrop.app): `index.html`, `pricing.html`, `download.html`, `blog.html`
+  (the launch post, source `mark.md`), `404.html`, plus the manual under
+  `docs/`.
+  Plain HTML/CSS, shared styles in `assets/style.css`, no external
+  requests, no JS beyond the `?theme=` hook. Feature screenshots in
+  `assets/shots/` are WebP copies of the manual's shots (see README);
+  regenerate them when the manual's are reshot. The site is public: the
+  password gate (and the hashed directory holding the old design) was
+  removed 2026-09-02. `mark.md`, the blog's source, is published as a raw
+  file until the deploy excludes it.
+- Test param: `?theme=light|dark` forces a theme (and swaps the
+  `<picture>` sources) — use for screenshots.
 - Verify before pushing: `./run.sh` (or `python3 -m http.server 8090`),
   headless Chrome screenshots, and check every local `href`/`src` resolves;
   gate the push on those checks with `&&`. For the manual,

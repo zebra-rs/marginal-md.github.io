@@ -1,53 +1,294 @@
-<!doctype html>
-<html lang="en" class="dark">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cradle</title>
-  <link rel="stylesheet" href="assets/fonts.css" />
-  <link rel="stylesheet" href="assets/theme.css" />
-  <link rel="icon" type="image/svg+xml" href="assets/cradle-logo.svg" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="shortcut icon" href="favicon.ico" />
-  <script type="text/javascript" src="sha256.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marginal — the markdown editor for coding agents</title>
+<meta name="description" content="Marginal finds the CLAUDE.md, skills, rules, sub-agents, and commands in effect for your project and lists them beside your notes. A native markdown editor for macOS, Windows, and Linux.">
+<link rel="canonical" href="https://marginal.md/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marginal">
+<meta property="og:title" content="Marginal — the markdown editor for coding agents">
+<meta property="og:description" content="Finds the CLAUDE.md, skills, rules, sub-agents, and commands in effect for your project. Native on macOS, Windows, and Linux.">
+<meta property="og:url" content="https://marginal.md/">
+<meta property="og:image" content="https://marginal.md/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/marginal-icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+(function(){try{var t=new URLSearchParams(location.search).get('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
 </head>
 <body>
-      <form id="form">
-      <p id="message">Please enter your password.</p>
-      <input type="password" placeholder="password" id="password">
-    </form>
-    <script>
-     function hash(text) {
-       const sha = new jsSHA('SHA-256', 'TEXT');
-       sha.update(text);
-       return sha.getHash('HEX');
-     }
-     function auth(password) {
-       const url = hash(password);
-       const xhr = new XMLHttpRequest();
-       xhr.open('GET', url);
-       xhr.send();
-       xhr.onload = function () {
-         if (xhr.readyState === 4 && xhr.status === 200) {
-           window.location = url;
-         } else {
-           const message = document.getElementById('message');
-           const input = document.getElementById('password');
-           message.innerHTML = 'Wrong password! Try again.';
-           input.value = '';
-         }
-       };
-       xhr.onerror = function () {
-         const message = document.getElementById('message');
-         message.innerHTML = 'Sorry, ERROR !';
-       };
-     }
-     const form = document.getElementById('form');
-     form.addEventListener('submit', function (event) {
-       const password = document.getElementById('password').value;
-       auth(password);
-       event.preventDefault();
-     });
-    </script>
+
+<header class="header">
+  <div class="container">
+    <a class="brand" href="index.html"><img src="assets/marginal-icon.svg" alt="" width="28" height="28"><span>Marginal</span></a>
+    <nav class="nav" aria-label="Site">
+      <a href="pricing.html">Pricing</a>
+      <a href="download.html">Download</a>
+      <a href="docs/">Manual</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container">
+    <h1>A markdown editor built for coding agents.</h1>
+    <p class="lede">Marginal finds the CLAUDE.md, skills, rules, sub-agents, and commands in effect for your project and lists them beside your notes. Native on macOS, Windows, and Linux, with your files kept as plain markdown on disk.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary btn-lg" href="download.html">Download Marginal</a>
+      <a class="btn btn-secondary btn-lg" href="docs/">Read the manual</a>
+    </div>
+    <p class="fine">macOS · Windows · Linux &nbsp;—&nbsp; 14-day free trial, no card</p>
+  </div>
+  <div class="shot-hero">
+    <img src="assets/top.png" width="1504" height="923" fetchpriority="high" alt="Marginal in split view on a zebra-rs workspace: the sidebar lists the folder tree, the markdown files, and the Claude Code sections CLAUDE.md and SKILLS; the editor and preview show CLAUDE.md side by side; the status bar shows the EMACS chip.">
+  </div>
+</section>
+
+<div class="agents">
+  <div class="container">
+    <strong>Knows where six coding agents keep their files</strong>
+    <span>Claude Code</span><span>Codex</span><span>Grok Build</span><span>OpenCode</span><span>Cursor</span><span>Qwen Code</span>
+  </div>
+</div>
+
+<section class="section" id="features">
+  <div class="container">
+
+    <div class="feature">
+      <div class="feature-text">
+        <p class="eyebrow">01 — Coding agents</p>
+        <h2>Your agent's files, found for you.</h2>
+        <p>Pick your coding agent, Claude Code by default, and Marginal finds the CLAUDE.md or AGENTS.md in effect for the open folder, along with its skills, rules, sub-agents, and commands, and lists them in the sidebar. You no longer lose track of which ones apply to the current project.</p>
+        <ul>
+          <li>Project, local, and user files, each badged with where it comes from</li>
+          <li>Skills listed by the name and description in their front matter</li>
+          <li>Switch the agent and the list rescans at once, no reopening the folder</li>
+        </ul>
+      </div>
+      <figure class="frame dark" style="margin:0">
+        <img src="assets/shots/agent-list.png" width="900" height="830" loading="lazy" alt="The sidebar: a folder tree on the left; on the right the MARKDOWN section with CLAUDE.md and README.md, then the CLAUDE CODE caption with a CLAUDE.md entry badged project and a SKILLS section listing clean-branch, merge-pr, and sync-pr, each badged user with its description.">
+      </figure>
+    </div>
+
+    <div class="feature flip">
+      <div class="feature-text">
+        <p class="eyebrow">02 — Files</p>
+        <h2>Every markdown file, wherever it is.</h2>
+        <p>Turn on <strong>List files in subfolders</strong> in Settings and the list shows every markdown file under the selected folder. Type part of a path in the filter box, with a slash to match a directory, and the list narrows as you type.</p>
+        <ul>
+          <li>Filter files (<kbd>⌘⇧F</kbd>) narrows the list and stays put while you work</li>
+          <li>Go to File (<kbd>⌘T</kbd>) jumps straight to a file by fuzzy path</li>
+          <li>Type <code>&gt;</code> in the same panel to run any command by name</li>
+        </ul>
+      </div>
+      <figure class="frame" style="margin:0">
+        <picture>
+          <source srcset="assets/shots/filter-files-dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="assets/shots/filter-files.webp" width="1600" height="1000" loading="lazy" alt="The file list filtered by the word notes, showing one match with the matched letters highlighted, next to the editor and preview.">
+        </picture>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="ai">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">03 — AI</p>
+      <h2 class="title">Two AI interfaces.</h2>
+      <p>One inside the editor, one in a terminal below it. Both run on the keys and the tools you already use.</p>
+    </div>
+    <div class="two">
+      <article class="card">
+        <figure class="frame" style="margin:0">
+          <picture>
+            <source srcset="assets/shots/ai-edit-dark.webp" media="(prefers-color-scheme: dark)">
+            <img src="assets/shots/ai-edit.webp" width="1600" height="1000" loading="lazy" alt="The AI edit bar over the editor, asking how the selection should change, with presets such as Improve the writing and Make it more concise.">
+          </picture>
+        </figure>
+        <div class="card-body">
+          <h3><kbd>⌘K</kbd> in the editor</h3>
+          <p>Select some text, press <kbd>⌘K</kbd>, and say what to do with it. The rewrite streams in as an inline diff, and you accept or reject it as a single undo step. It runs on your own API key from Anthropic, OpenAI, Google, xAI, or Alibaba Cloud, kept in the system keychain.</p>
+        </div>
+      </article>
+      <article class="card">
+        <figure class="frame" style="margin:0">
+          <picture>
+            <source srcset="assets/shots/terminal-dark.webp" media="(prefers-color-scheme: dark)">
+            <img src="assets/shots/terminal.webp" width="1600" height="1000" loading="lazy" alt="A terminal panel below the editor and preview, with a shell prompt in the workspace folder.">
+          </picture>
+        </figure>
+        <div class="card-body">
+          <h3><kbd>⌘J</kbd> for the coding agent</h3>
+          <p><kbd>⌘J</kbd> opens a terminal panel below the editor, so you can run <code>claude</code> or <code>codex</code> right there. When the agent writes to a file you have open, Marginal offers to reload it, and a new skill it saves appears in the SKILLS section without reopening the folder.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="feature">
+      <div class="feature-text">
+        <p class="eyebrow">04 — Read &amp; export</p>
+        <h2>Open to read, then export.</h2>
+        <p>Double-click a markdown file in the Finder and Marginal opens it in reading mode: only the rendered page, sized to the text, so you can focus on reading. Press <kbd>Esc</kbd> to get the editor back.</p>
+        <ul>
+          <li>Export as PDF or HTML straight from the File menu</li>
+          <li>Print, PDF, and HTML use the same renderer as the preview</li>
+          <li>Exports always use your light theme, so a light theme doubles as your paper style</li>
+        </ul>
+      </div>
+      <figure class="frame" style="margin:0">
+        <picture>
+          <source srcset="assets/shots/reader-dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="assets/shots/reader.webp" width="1600" height="1293" loading="lazy" alt="The reading view: a rendered document with a table and a footnote in a window with no editor chrome.">
+        </picture>
+      </figure>
+    </div>
+
+    <div class="feature flip">
+      <div class="feature-text">
+        <p class="eyebrow">05 — Keys</p>
+        <h2>Emacs and Vim, plus your own bindings.</h2>
+        <p>Set the editing mode to Default, Emacs, or Vim, and the status bar shows which one is on. Emacs incremental search lands on the third <em>readme</em> the way it should, and Vim users get <code>/</code>, <code>?</code>, <code>n</code>, and <code>N</code> as expected, with the Vim mode shown in the status bar too.</p>
+        <ul>
+          <li>Bind your own shortcuts to editor and application commands</li>
+          <li>Ctrl stays free for editing on Windows and Linux; app shortcuts use Alt there</li>
+          <li>The scheme is saved per machine</li>
+        </ul>
+      </div>
+      <div class="keys">
+        <div class="keyrow">
+          <span class="label">Emacs — third occurrence of “readme”</span>
+          <div class="keyseq"><kbd>C-s</kbd> <span>readme</span> <kbd>C-s</kbd> <kbd>C-s</kbd> <kbd>C-g</kbd></div>
+        </div>
+        <div class="keyrow">
+          <span class="label">Vim — search and step</span>
+          <div class="keyseq"><kbd>/</kbd> <span>forward</span> <span class="arrow">·</span> <kbd>?</kbd> <span>backward</span> <span class="arrow">·</span> <kbd>n</kbd> <kbd>N</kbd> <span>next, previous</span></div>
+        </div>
+        <div class="keyrow">
+          <span class="label">Status bar</span>
+          <div class="statusbar"><span class="chip">EMACS</span><span class="dot">·</span><span>Ln 10, Col 1</span><span class="dot">·</span><span>605 words</span><span class="right">Autosave off</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="themes">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">06 — Themes</p>
+      <h2 class="title">Dark mode and ten themes, or bring your own.</h2>
+      <p>Five light and dark pairs are built in: Marginal, GitHub, Solarized, Zenburn, and Dracula. A theme is a single JSON file that styles the whole app, editor, preview, and exports. Drop your own into the themes folder and Marginal loads it without a restart.</p>
+    </div>
+    <div class="themes" aria-label="The ten built-in themes">
+      <div class="theme" style="--tbg:#ffffff;--tchrome:#f6f7f9;--tfg:#1f2430;--th:#4f6bed;--tacc:#4f6bed;--tb:#e2e5ea"><div class="bar">Marginal Light<i></i></div><div class="body"><span class="h"># Heading</span><br>Body text and <span class="a">link</span><br><span class="m">`code`</span></div></div>
+      <div class="theme" style="--tbg:#1c2029;--tchrome:#161b22;--tfg:#edf1f7;--th:#7d95ff;--tacc:#6e87f5;--tb:#2a2f38"><div class="bar">Marginal Dark<i></i></div><div class="body"><span class="h"># Heading</span><br>Body text and <span class="a">link</span><br><span class="m">`code`</span></div></div>
+      <div class="theme" style="--tbg:#ffffff;--tchrome:#f6f8fa;--tfg:#1f2328;--th:#1f2328;--tacc:#0969da;--tb:#d1d9e0"><div class="bar">GitHub Light<i></i></div><div class="body"><span class="h"># Heading</span><br>Body text and <span class="a">link</span><br><span class="m">`code`</span></div></div>
+      <div class="theme" style="--tbg:#0d1117;--tchrome:#151b23;--tfg:#f0f6fc;--th:#f0f6fc;--tacc:#4493f8;--tb:#3d444d"><div class="bar">GitHub Dark<i></i></div><div class="body"><span class="h"># Heading</span><br>Body text and <span class="a">link</span><br><span class="m">`code`</span></div></div>
+      <div class="theme" style="--tbg:#fcf6e5;--tchrome:#eee8d5;--tfg:#697a82;--th:#b695f3;--tacc:#b695f3;--tb:#dcd4c1"><div class="bar">Solarized Light<i></i></div><div class="body"><span class="h"># Heading</span><br>Body text and <span class="a">link</span><br><span class="m">`code`</span></div></div>
+      <div class="theme" style="--tbg:#0e2a35;--tchrome:#0b2430;--tfg:#869396;--th:#b695f3;--tacc:#b695f3;--tb:#1d4250"><div class="bar">Solarized Dark<i></i></div><div class="body"><span class="h"># Heading</span><br>Body text and <span class="a">link</span><br><span class="m">`code`</span></div></div>
+      <div class="theme" style="--tbg:#ffffff;--tchrome:#f6f3f6;--tfg:#2b2733;--th:#d63394;--tacc:#d63394;--tb:#e5e0e6"><div class="bar">Zenburn Light<i></i></div><div class="body"><span class="h"># Heading</span><br>Body text and <span class="a">link</span><br><span class="m">`code`</span></div></div>
+      <div class="theme" style="--tbg:#1f1c1e;--tchrome:#252226;--tfg:#d2d5db;--th:#ee6cb8;--tacc:#ee6cb8;--tb:#37333a"><div class="bar">Zenburn Dark<i></i></div><div class="body"><span class="h"># Heading</span><br>Body text and <span class="a">link</span><br><span class="m">`code`</span></div></div>
+      <div class="theme" style="--tbg:#fdfbf3;--tchrome:#f5f2e6;--tfg:#282a36;--th:#7c4dcc;--tacc:#7c4dcc;--tb:#e6e1d2"><div class="bar">Dracula Light<i></i></div><div class="body"><span class="h"># Heading</span><br>Body text and <span class="a">link</span><br><span class="m">`code`</span></div></div>
+      <div class="theme" style="--tbg:#282a36;--tchrome:#21222c;--tfg:#f8f8f2;--th:#bd93f9;--tacc:#bd93f9;--tb:#44475a"><div class="bar">Dracula Dark<i></i></div><div class="body"><span class="h"># Heading</span><br>Body text and <span class="a">link</span><br><span class="m">`code`</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="pricing">
+      <div>
+        <p class="eyebrow">Pricing</p>
+        <h2 class="title">One plan, two ways to pay.</h2>
+        <p style="font-size:18px;color:var(--muted);margin:0 0 22px">The subscription covers editing. Reading, preview, print, and export always work, signed in or not.</p>
+        <ul class="checks">
+          <li>14-day trial of the full app, no card</li>
+          <li>macOS, Windows, and Linux with one account</li>
+          <li>AI on your own API key, never gated by the subscription</li>
+          <li>If it lapses, Marginal turns read-only. Your files are never locked.</li>
+        </ul>
+        <a href="pricing.html">Pricing details and FAQ →</a>
+      </div>
+      <div class="price-card">
+        <p class="plan-name">Marginal</p>
+        <div class="price-options">
+          <div class="price">
+            <div class="amount">$10</div>
+            <div class="per">per month</div>
+            <div class="note">Cancel anytime.</div>
+          </div>
+          <div class="price best">
+            <span class="tag">20% off</span>
+            <div class="amount">$96</div>
+            <div class="per">per year</div>
+            <div class="note">$8 a month, billed once a year.</div>
+          </div>
+        </div>
+        <a class="btn btn-primary" href="download.html">Start the free trial</a>
+        <p class="fine">Download, sign in, and the 14-day trial starts. No card.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2 class="title">Get Marginal</h2>
+    <p>macOS 12 or later, Windows 10 or later, and Linux on x86_64 or aarch64. One app per platform, no runtime to install.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary btn-lg" href="download.html">Download</a>
+      <a class="btn btn-secondary btn-lg" href="docs/">Read the manual</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="col-brand">
+      <a class="brand" href="index.html"><img src="assets/marginal-icon.svg" alt="" width="22" height="22">Marginal</a>
+      <p>The markdown editor for coding agents. Plain files on your disk, native on macOS, Windows, and Linux.</p>
+      <p>© 2026 Kunihiro Ishiguro</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <ul>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <ul>
+        <li><a href="docs/">Manual</a></li>
+        <li><a href="docs/agents/overview/">Coding agents</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){var t=document.documentElement.getAttribute('data-theme');if(!t)return;document.querySelectorAll('picture > source[media]').forEach(function(s){if(t==='dark')s.setAttribute('media','all');else s.remove();});})();
+</script>
 </body>
 </html>
