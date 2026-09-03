@@ -152,6 +152,11 @@
   // Detect the visitor's platform, then ask GitHub for the latest release
   // and point every file link at its asset. Without JS, or if the request
   // fails, every link goes to the releases page instead.
+  //
+  // Architecture: Chromium's user-agent string is frozen to "Linux x86_64"
+  // on every Linux machine, so the CPU comes from the client-hints API
+  // (navigator.userAgentData.getHighEntropyValues) where it exists; the
+  // string is only the fallback, which is right for Firefox.
   var API = 'https://api.github.com/repos/zebra-rs/marginal-releases/releases/latest';
   var RELEASES = 'https://github.com/zebra-rs/marginal-releases/releases';
   var MATCH = {
@@ -181,27 +186,47 @@
     return { os: os, arch: arch };
   }
 
+  // Resolves to the final architecture: client hints when available,
+  // otherwise whatever the user-agent string said.
+  function refineArch(who) {
+    var uad = navigator.userAgentData;
+    if (!uad || !uad.getHighEntropyValues) return Promise.resolve(who.arch);
+    return uad.getHighEntropyValues(['architecture', 'bitness']).then(function (hints) {
+      if (hints.architecture === 'arm') return 'arm64';
+      if (hints.architecture === 'x86') return 'x64';
+      return who.arch;
+    }).catch(function () { return who.arch; });
+  }
+
   function mb(bytes) { return (bytes / 1048576).toFixed(bytes < 10485760 ? 1 : 0) + ' MB'; }
 
   var $ = function (id) { return document.getElementById(id); };
   var who = detect();
-  var key = who.os === 'linux' ? 'linux-' + who.arch : who.os;
-  var primaryMatch = key ? PRIMARY[key] : null;
+  var archName = function () { return who.arch === 'arm64' ? 'aarch64' : 'x86_64'; };
+  var primaryKey = function () { return who.os === 'linux' ? 'linux-' + who.arch : who.os; };
 
-  if (who.os) {
-    $('rec-title').textContent = 'Marginal for ' + LABEL[who.os] + (who.os === 'linux' ? ' (' + (who.arch === 'arm64' ? 'aarch64' : 'x86_64') + ')' : '');
+  function renderRecommendation() {
+    if (!who.os) { $('rec-k').textContent = 'Downloads'; return; }
+    $('rec').setAttribute('data-arch', who.arch);
+    $('rec-title').textContent = 'Marginal for ' + LABEL[who.os] + (who.os === 'linux' ? ' (' + archName() + ')' : '');
     var btn = $('rec-btn');
     btn.hidden = false;
-    btn.textContent = 'Download for ' + LABEL[who.os];
-    btn.href = RELEASES + '/latest';
-  } else {
-    $('rec-k').textContent = 'Downloads';
+    if (!btn.getAttribute('download')) {
+      btn.textContent = 'Download for ' + LABEL[who.os];
+      btn.href = RELEASES + '/latest';
+    }
   }
+  renderRecommendation();
+
+  var archReady = refineArch(who).then(function (arch) { who.arch = arch; renderRecommendation(); });
 
   if (!window.fetch) return;
-  fetch(API, { headers: { 'Accept': 'application/vnd.github+json' } })
-    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-    .then(function (rel) {
+  var release = fetch(API, { headers: { 'Accept': 'application/vnd.github+json' } })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); });
+
+  Promise.all([archReady, release])
+    .then(function (results) {
+      var rel = results[1];
       var assets = rel.assets || [];
       var found = {};
       Object.keys(MATCH).forEach(function (k) {
@@ -219,11 +244,11 @@
       var version = (rel.tag_name || '').replace(/^v/, '') || rel.name;
       var date = rel.published_at ? new Date(rel.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }) : '';
       $('rec-meta').textContent = 'Version ' + version + (date ? ', released ' + date : '');
-      var primary = primaryMatch && found[primaryMatch];
+      var primary = who.os && found[PRIMARY[primaryKey()]];
       if (primary) {
         var btn = $('rec-btn');
         btn.href = primary.browser_download_url;
-        btn.textContent = 'Download for ' + LABEL[who.os] + ' · ' + mb(primary.size);
+        btn.textContent = 'Download for ' + LABEL[who.os] + (who.os === 'linux' ? ' ' + archName() : '') + ' · ' + mb(primary.size);
         btn.setAttribute('download', '');
       }
     })
