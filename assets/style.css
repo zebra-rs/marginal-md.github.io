@@ -16,6 +16,8 @@
   --shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 16px 40px rgb(0 0 0 / 0.08);
   --radius: 12px;
   --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --show-moon: block;
+  --show-sun: none;
 }
 
 :root[data-theme="dark"] {
@@ -27,6 +29,8 @@
   --border: #2a2f38;
   --accent: #6e87f5;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.5), 0 16px 40px rgb(0 0 0 / 0.55);
+  --show-moon: none;
+  --show-sun: block;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,6 +43,8 @@
     --border: #2a2f38;
     --accent: #6e87f5;
     --shadow: 0 1px 2px rgb(0 0 0 / 0.5), 0 16px 40px rgb(0 0 0 / 0.55);
+    --show-moon: none;
+    --show-sun: block;
   }
 }
 
@@ -83,10 +89,18 @@ code, kbd, pre { font-family: var(--mono); }
 .nav { margin-left: auto; display: flex; gap: 28px; }
 .nav a { color: var(--muted); font-size: 15px; font-weight: 500; white-space: nowrap; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--fg); text-decoration: none; }
+.theme-toggle {
+  flex: none; width: 34px; height: 34px; border-radius: 8px;
+  border: 1px solid var(--border); background: transparent; color: var(--muted);
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;
+}
+.theme-toggle:hover { color: var(--fg); background: var(--surface); }
+.theme-toggle .moon { display: var(--show-moon); }
+.theme-toggle .sun { display: var(--show-sun); }
 @media (max-width: 520px) {
   .header .container { gap: 12px; }
   .header .brand span { display: none; }
-  .nav { gap: 20px; }
+  .nav { gap: 16px; }
   .nav a { font-size: 14px; }
 }
 
