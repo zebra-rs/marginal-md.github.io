@@ -21,8 +21,8 @@ machine, outside that file.
 <Shot name="settings-ai" alt="The AI tab of Settings" />
 
 The first tab, and the one Settings opens on. It holds the coding agent
-whose files the file list shows, and the Claude model Marginal's own AI
-features use.
+whose files the file list shows, and the provider and model Marginal's own
+AI features use.
 
 **Coding agent**
 
@@ -32,20 +32,22 @@ features use.
 | Where … looks for its files | folded | Folds open to list every folder the selected agent reads, the environment variable that relocates its user folder, and a link to the agent's page in this manual; stays the way you left it |
 | Unfold agent sections | off | Open the agent's sections in the file list by default |
 
-**Model**
+**API AI model**
 
 | Setting | Default | What it does |
 |---|---|---|
-| Model | claude-opus-5 | The Claude model for requests |
-| Effort | high | low, medium, or high |
+| Provider | Anthropic | Whose API the AI features call: Anthropic, OpenAI, Google, xAI, Alibaba Cloud, or Alibaba Cloud (China). Changing it resets Model and Effort to that provider's defaults |
+| Model | Claude Opus 5 | The provider's current models; **Other model id…** takes any id the API accepts |
+| Effort | the model's API default | How hard the model thinks, in the provider's own terms (`low`…`max`, a thinking level, or thinking on/off); disabled for models without the control |
 
 **API key**
 
 | Setting | Default | What it does |
 |---|---|---|
-| Anthropic API key | | Saved to the system keychain; **Clear** removes it |
+| *Provider* API key | | The selected provider's key, saved to the system keychain; **Clear** removes it. **Get an API key from …** opens the provider's console |
 
-See [Connect your Anthropic key](../../ai/setup/).
+See [Connect an API key](../../ai/setup/) for each provider's models and
+effort levels.
 
 ## General
 
@@ -55,7 +57,7 @@ See [Connect your Anthropic key](../../ai/setup/).
 
 | Setting | Default | What it does |
 |---|---|---|
-| Interface font size | 13 | Text size of the sidebar, the file list, and the Settings window itself |
+| Interface font size | 13 | Text size of the sidebar, the file list, the editor's find and replace panel, and the Settings window itself |
 
 The editor and the preview have their own sizes under **Editor** and
 **Preview**.

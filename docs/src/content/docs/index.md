@@ -35,7 +35,7 @@ Start with [Your coding agent](agents/overview/).
   [a tour of the window](start/tour/).
 - Working with a coding agent? Read [Your coding agent](agents/overview/)
   and the page for yours.
-- Want the AI features? [Connect your Anthropic key](ai/setup/), then read
+- Want the AI features? [Connect an API key](ai/setup/), then read
   about [editing with AI](ai/editing/).
 - Looking something up? The [Settings](reference/settings/),
   [Keybindings](reference/keybindings/), and [Themes](reference/themes/)

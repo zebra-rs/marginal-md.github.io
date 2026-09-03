@@ -18,7 +18,7 @@ never locked, and a document you changed while you were licensed can still
 be saved.
 
 The AI features are separate. They run on
-[your own Anthropic key](../../ai/setup/) and are never gated by the
+[your own API key](../../ai/setup/) and are never gated by the
 subscription.
 
 ## Signing in

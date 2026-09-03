@@ -1,44 +1,70 @@
 ---
-title: Connect your Anthropic key
-description: Marginal's AI features run on your own Anthropic API key, stored in the system keychain.
+title: Connect an API key
+description: Marginal's AI features run on your own API key from Anthropic, OpenAI, Google, xAI, or Alibaba Cloud, stored in the system keychain.
 sidebar: { order: 1 }
 ---
 
 import Shot from '../../../components/Shot.astro';
 
-Marginal's AI features call Anthropic's API directly with a key that
-belongs to you. Usage is billed by Anthropic to that key; Marginal's
+Marginal's AI features call the vendor's API directly with a key that
+belongs to you. Usage is billed by the vendor to that key; Marginal's
 subscription never gates the AI.
 
-## Add the key
+## Pick a provider and add its key
 
-1. Create a key at
-   [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys).
-2. Open **Settings ▸ AI** (<kbd>⌘,</kbd>), paste the key into
-   **Anthropic API key**, and click **Save**.
+1. Open **Settings ▸ AI** (<kbd>⌘,</kbd>) and choose the **Provider**
+   under **API AI model**: Anthropic, OpenAI, Google, xAI, or Alibaba
+   Cloud (with a separate entry for the China endpoint, whose keys are
+   region-bound).
+2. Create a key on the provider's console. **Get an API key from …** under
+   the key field opens the right page:
 
-<Shot name="settings-ai" alt="The AI tab of Settings with the model and effort pickers and the API key field" caption="Settings ▸ AI. A saved key shows as dots; Clear removes it." />
+   | Provider | Keys page |
+   |---|---|
+   | Anthropic | [platform.claude.com/settings/keys](https://platform.claude.com/settings/keys) |
+   | OpenAI | [platform.openai.com/settings/organization/api-keys](https://platform.openai.com/settings/organization/api-keys) |
+   | Google | [aistudio.google.com/apikey](https://aistudio.google.com/apikey) |
+   | xAI | [console.x.ai](https://console.x.ai/team/default/api-keys) |
+   | Alibaba Cloud | [Model Studio console](https://modelstudio.console.alibabacloud.com/?tab=playground#/api-key) (international) or [bailian.console.aliyun.com](https://bailian.console.aliyun.com/?tab=model#/api-key) (China) |
 
-The key goes into the system keychain: the Keychain on macOS, Credential
-Manager on Windows, the Secret Service on Linux. It is read only inside
-Marginal's Rust process and never reaches the interface, a log, or a
-config file. **Clear** removes it again.
+3. Paste the key into the key field and click **Save**.
 
-Typing `/login` in the AI bar (<kbd>⌘K</kbd>) opens the console page and
-this settings tab together.
+<Shot name="settings-ai" alt="The AI tab of Settings with the provider, model and effort pickers and the API key field" caption="Settings ▸ AI. A saved key shows as dots; Clear removes it." />
+
+Each provider keeps its own key in the system keychain: the Keychain on
+macOS, Credential Manager on Windows, the Secret Service on Linux. Keys
+are read only inside Marginal's Rust process and never reach the
+interface, a log, or a config file. **Clear** removes the selected
+provider's key again; switching providers shows whether that one has a
+key saved.
+
+Typing `/login` in the AI bar (<kbd>⌘K</kbd>) opens the selected
+provider's keys page and this settings tab together.
 
 ## Model and effort
 
-**Model** picks the Claude model for requests. The default is
-`claude-opus-5`; `claude-sonnet-5` and `claude-haiku-4-5` are faster and
-cheaper. A model id you have set by other means is kept and listed too.
+**Model** lists the provider's current models. Switching the provider
+resets it to that provider's default. **Other model id…** at the end of
+the list takes any id the API accepts, for a model newer than this list;
+it stays listed, marked *typed in*.
 
-**Effort** trades speed for reasoning: **low** is fastest, **high** is the
-default.
+**Effort** trades speed for reasoning, in the provider's own terms; a
+model without such a control shows *not adjustable*. Marginal sends
+exactly what the setting says. The lists, as checked on 2 September 2026:
+
+| Provider | Models (default first) | Effort |
+|---|---|---|
+| Anthropic | Claude Opus 5, Claude Sonnet 5, Claude Fable 5.1, Claude Haiku 4.5 | `low`, `medium`, `high` (default), `xhigh`, `max`; Haiku 4.5 has none |
+| OpenAI | GPT-5.6 Sol, GPT-5.6 Terra, GPT-5.6 Luna, GPT-5.4 mini, GPT-5.4 nano | `none`, `low`, `medium`, `high`, `xhigh`, `max` (`medium` is the default on GPT-5.6, `none` on GPT-5.4 mini and nano, which lack `max`) |
+| Google | Gemini 3.8 Flash, Gemini 3.1 Pro (preview), Gemini 3.7 Flash, Gemini 3.5 Flash-Lite | thinking level `minimal`, `low`, `medium`, `high`; Gemini 3 cannot stop thinking, and `minimal` is offered only by Flash-Lite |
+| xAI | Grok 4.6, Grok 4.5, Grok 4.3, Grok 4.20 non-reasoning | `none`, `low`, `medium`, `high`, `xhigh` per model: Grok 4.6 and 4.5 always reason (`high` default), Grok 4.3 can skip it with `none`, the 4.20 non-reasoning model has no control |
+| Alibaba Cloud | Qwen3.8 Max, Qwen3.7 Plus, Qwen3.8 Flash, Qwen3 Max, Qwen Plus | thinking **on** or **off** only; on by default from Qwen3.5 up, off for Qwen3 Max and Qwen Plus |
+
+A model id you have set by other means is kept and listed too.
 
 ## When something goes wrong
 
-The AI bar reports problems in place: a missing key, a key Anthropic
+The AI bar reports problems in place: a missing key, a key the provider
 rejects, a rate limit, a network failure, or a request the model declined.
 Each comes with the sensible next step, such as **Open Settings** or
 **Retry**.

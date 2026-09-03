@@ -96,10 +96,13 @@ set, every motion extends the selection instead of moving.
 point and mark, `C-x C-u` / `C-x C-l` upcase / downcase region,
 `C-x r` rectangular region.
 
+**Search** — `C-s` / `C-r` open the find panel; inside it, `C-s` steps to
+the next match and `C-r` to the previous one, and `C-g` closes the panel
+with the match still selected and the cursor on it (Escape does the same).
+
 **Other** — `C-g` cancel, `C-u` universal argument (repeat count),
-`C-s` / `C-r` search, `C-/` or `C-z` undo, `C-t` transpose characters,
-`M-u` / `M-l` change case, `M-;` toggle comment, `M-/` completion,
-`M-x` command line.
+`C-/` or `C-z` undo, `C-t` transpose characters, `M-u` / `M-l` change
+case, `M-;` toggle comment, `M-/` completion, `M-x` command line.
 
 Two platform details:
 
@@ -115,8 +118,9 @@ Two platform details:
 
 A full modal editor: Normal, Insert, Visual and Visual-Block modes, motions,
 operators, text objects, counts, registers, marks, macros (`q`), `.` repeat,
-`/` search wired into the editor's own search, and an ex line (`:`) with
-`:s`, ranges and `:noh`.
+`/` and `?` search (forward and backward, `n` / `N` for the next and
+previous match, Escape cancels the prompt) wired into the editor's own
+search, and an ex line (`:`) with `:s`, ranges and `:noh`.
 
 - `:w` saves the document (it runs Marginal's Save, so it works on untitled
   documents too).
