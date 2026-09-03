@@ -190,8 +190,6 @@
 
   if (who.os) {
     $('rec-title').textContent = 'Marginal for ' + LABEL[who.os] + (who.os === 'linux' ? ' (' + (who.arch === 'arm64' ? 'aarch64' : 'x86_64') + ')' : '');
-    var card = document.querySelector('.platform[data-os="' + who.os + '"]');
-    if (card) card.classList.add('recommended');
     var btn = $('rec-btn');
     btn.hidden = false;
     btn.textContent = 'Download for ' + LABEL[who.os];
