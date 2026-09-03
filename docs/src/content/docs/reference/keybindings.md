@@ -96,9 +96,12 @@ set, every motion extends the selection instead of moving.
 point and mark, `C-x C-u` / `C-x C-l` upcase / downcase region,
 `C-x r` rectangular region.
 
-**Search** — `C-s` / `C-r` open the find panel; inside it, `C-s` steps to
-the next match and `C-r` to the previous one, and `C-g` closes the panel
-with the match still selected and the cursor on it (Escape does the same).
+**Search** — `C-s` / `C-r` open the find panel and search forward or
+backward from the cursor. The first match is selected as you type; inside
+the panel, `C-s` steps to the next match and `C-r` to the previous one,
+and `C-g` closes the panel with the match still selected and the cursor
+on it (Escape does the same). So `C-s readme C-s C-s C-g` leaves you on
+the third "readme" after the cursor.
 
 **Other** — `C-g` cancel, `C-u` universal argument (repeat count),
 `C-/` or `C-z` undo, `C-t` transpose characters, `M-u` / `M-l` change
