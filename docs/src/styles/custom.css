@@ -88,3 +88,32 @@
   background: var(--sl-color-gray-6);
   white-space: nowrap;
 }
+
+/* Theme toggle (src/components/ThemeSelect.astro): the same sun/moon button
+   as the marketing site, sharing its localStorage `theme` key. */
+.theme-toggle {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--sl-color-gray-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.theme-toggle:hover {
+  color: var(--sl-color-white);
+  background: var(--sl-color-gray-6);
+}
+.theme-toggle .sun,
+.theme-toggle .moon {
+  display: none;
+}
+:root[data-theme='dark'] .theme-toggle .sun,
+:root[data-theme='light'] .theme-toggle .moon {
+  display: block;
+}

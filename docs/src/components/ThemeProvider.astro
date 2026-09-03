@@ -1,0 +1,33 @@
+---
+// Overrides Starlight's ThemeProvider so the manual shares the marketing
+// site's theme choice: localStorage `theme` is 'light' or 'dark', and when
+// it is absent the system setting applies. The site's toggle lives in
+// ../../../assets/site.js; the manual's is ThemeSelect.astro next to this.
+---
+
+{/* Inlined to avoid a flash of the wrong theme. */}
+<script is:inline>
+	window.StarlightThemeProvider = (() => {
+		const mq = window.matchMedia('(prefers-color-scheme: dark)');
+		const stored = () => {
+			try {
+				return localStorage.getItem('theme');
+			} catch {
+				return null;
+			}
+		};
+		const resolve = () => {
+			const t = stored();
+			return t === 'light' || t === 'dark' ? t : mq.matches ? 'dark' : 'light';
+		};
+		const apply = () => {
+			document.documentElement.dataset.theme = resolve();
+		};
+		apply();
+		mq.addEventListener('change', () => {
+			const t = stored();
+			if (t !== 'light' && t !== 'dark') apply();
+		});
+		return { apply, updatePickers() {} };
+	})();
+</script>

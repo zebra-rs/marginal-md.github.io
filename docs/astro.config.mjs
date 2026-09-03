@@ -15,6 +15,11 @@ export default defineConfig({
       logo: { src: './src/assets/marginal-icon.svg', alt: '' },
       favicon: '/favicon.svg',
       customCss: ['./src/styles/custom.css'],
+      // The theme toggle and storage key are shared with the marketing site.
+      components: {
+        ThemeProvider: './src/components/ThemeProvider.astro',
+        ThemeSelect: './src/components/ThemeSelect.astro',
+      },
       social: [{ icon: 'external', label: 'marginal.md', href: 'https://marginal.md/' }],
       editLink: {
         baseUrl: 'https://github.com/zebra-rs/marginal.github.io/edit/main/docs/',

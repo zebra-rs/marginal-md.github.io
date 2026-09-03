@@ -69,6 +69,12 @@ to `_site/docs/` by the workflow, not to the artifact root.
   execution policy, not prompts.
 - Palette: `docs/src/styles/custom.css` maps Starlight's `--sl-color-*`
   variables to the tokens in `assets/style.css`; change both together.
+- Theme switch: `docs/src/components/ThemeProvider.astro` and
+  `ThemeSelect.astro` override Starlight's picker (registered under
+  `components` in `astro.config.mjs`) with the site's sun/moon button on
+  the shared localStorage key `theme` (`light` | `dark`, absent = system),
+  so a choice made on the marketing pages carries into the manual and
+  back. Starlight's own `starlight-theme` key is no longer used.
 - **This repo is the source of truth for user-facing documentation**
   (decided 2026-09-01). The two reference pages were seeded from the app
   repo's `docs/KEYBINDINGS.md` and `THEMES.md`, which were then deleted
