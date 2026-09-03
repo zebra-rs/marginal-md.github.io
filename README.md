@@ -11,8 +11,9 @@ The Marginal marketing site, served by GitHub Pages at **https://marginal.md**
   in `assets/style.css` (tokens mirror the app's `marginal-light` /
   `marginal-dark` themes; the vermilion comes from the app icon).
   `assets/top.png` is the hero screenshot; `assets/shots/` holds the WebP
-  feature screenshots, made from `docs/src/assets/shots/` with `cwebp -q 82
-  -resize 1600 0`, plus `agent-list.png`, a crop of `top.png`. The site is
+  feature screenshots (`cwebp -q 82 -resize 1600 0` over app screenshots;
+  `reader*` comes from `docs/src/assets/shots/`), plus `agent-list.png`, a
+  crop of `top.png`. The site is
   public (the password gate was removed 2026-09-02); `design-v2/` holds
   old design canvases and is not published.
 - `docs/` — the **user manual**, an [Astro](https://astro.build) +

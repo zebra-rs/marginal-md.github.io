@@ -110,8 +110,8 @@ to `_site/docs/` by the workflow, not to the artifact root.
   Plain HTML/CSS, shared styles in `assets/style.css`; the only external
   request is the download page's GitHub API call, and the only JS is the
   theme switch (`assets/site.js`) and that download logic. Feature screenshots in
-  `assets/shots/` are WebP copies of the manual's shots (see README);
-  regenerate them when the manual's are reshot. The site is public: the
+  `assets/shots/` are WebP (1600 px wide, q 82) made from app screenshots;
+  `reader*` mirrors the manual's shot (see README). The site is public: the
   password gate (and the hashed directory holding the old design) was
   removed 2026-09-02. `mark.md`, the blog's source, is published as a raw
   file until the deploy excludes it.
