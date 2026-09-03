@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Download — Marginal</title>
-<meta name="description" content="Marginal 1.0 for macOS, Windows, and Linux is being prepared for release: a universal macOS build, x64 Windows, and x86_64 and aarch64 Linux.">
+<meta name="description" content="Download Marginal for macOS, Windows, or Linux: a universal macOS build, x64 Windows installers, and x86_64 and aarch64 Linux packages.">
 <link rel="canonical" href="https://marginal.md/download.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Marginal">
 <meta property="og:title" content="Download — Marginal">
-<meta property="og:description" content="Marginal 1.0 for macOS, Windows, and Linux is being prepared for release.">
+<meta property="og:description" content="Marginal for macOS, Windows, and Linux.">
 <meta property="og:url" content="https://marginal.md/download.html">
 <meta property="og:image" content="https://marginal.md/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -53,39 +53,52 @@
 
 <section>
   <div class="container narrow">
-    <div class="notice" style="margin-bottom:32px"><strong>Version 1.0 is being prepared for release.</strong> The builds below will appear here the moment it ships.</div>
-    <div class="platforms">
-      <div class="platform">
-        <h3>macOS</h3>
-        <p class="req">macOS 12 or later</p>
-        <dl>
-          <dt>Package</dt><dd>.dmg</dd>
-          <dt>Chips</dt><dd>universal, Apple silicon and Intel</dd>
-          <dt>Signing</dt><dd>Developer ID, notarized</dd>
-        </dl>
-        <span class="soon">Available at launch</span>
+    <div class="rec" id="rec">
+      <div class="rec-body">
+        <div class="rec-k" id="rec-k">Recommended for you</div>
+        <div class="rec-title" id="rec-title">Choose your platform below</div>
+        <div class="rec-meta" id="rec-meta">Latest release on GitHub</div>
       </div>
-      <div class="platform">
-        <h3>Windows</h3>
-        <p class="req">Windows 10 or later</p>
-        <dl>
-          <dt>Package</dt><dd>.exe installer, .msi</dd>
-          <dt>Arch</dt><dd>x64</dd>
-          <dt>Signing</dt><dd>not code-signed yet</dd>
-        </dl>
-        <span class="soon">Available at launch</span>
-      </div>
-      <div class="platform">
-        <h3>Linux</h3>
-        <p class="req">x86_64 and aarch64</p>
-        <dl>
-          <dt>Package</dt><dd>.AppImage, .deb, .rpm</dd>
-          <dt>Arch</dt><dd>both architectures</dd>
-          <dt>Signing</dt><dd>not signed</dd>
-        </dl>
-        <span class="soon">Available at launch</span>
+      <div class="rec-actions">
+        <a class="btn btn-primary" id="rec-btn" href="https://github.com/zebra-rs/marginal-releases/releases/latest" hidden>Download</a>
+        <a class="btn btn-secondary" id="rec-all" href="https://github.com/zebra-rs/marginal-releases/releases">All releases on GitHub</a>
       </div>
     </div>
+
+    <div class="platforms" id="platforms">
+      <div class="platform" data-os="mac">
+        <h3>macOS</h3>
+        <p class="req">macOS 12 or later · universal, Apple silicon and Intel · signed and notarized</p>
+        <ul class="files">
+          <li><a data-match="dmg" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.dmg</span><span class="size"></span></a></li>
+        </ul>
+      </div>
+      <div class="platform" data-os="win">
+        <h3>Windows</h3>
+        <p class="req">Windows 10 or later · x64 · not code-signed yet</p>
+        <ul class="files">
+          <li><a data-match="exe" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">Setup .exe</span><span class="size"></span></a></li>
+          <li><a data-match="msi" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.msi</span><span class="size"></span></a></li>
+        </ul>
+      </div>
+      <div class="platform" data-os="linux">
+        <h3>Linux</h3>
+        <p class="req">x86_64 and aarch64 · not signed</p>
+        <div class="files-k">x86_64</div>
+        <ul class="files">
+          <li><a data-match="appimage-x64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.AppImage</span><span class="size"></span></a></li>
+          <li><a data-match="deb-x64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.deb</span><span class="size"></span></a></li>
+          <li><a data-match="rpm-x64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.rpm</span><span class="size"></span></a></li>
+        </ul>
+        <div class="files-k">aarch64</div>
+        <ul class="files">
+          <li><a data-match="appimage-arm64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.AppImage</span><span class="size"></span></a></li>
+          <li><a data-match="deb-arm64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.deb</span><span class="size"></span></a></li>
+          <li><a data-match="rpm-arm64" href="https://github.com/zebra-rs/marginal-releases/releases/latest"><span class="name">.rpm</span><span class="size"></span></a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">Every file is published on <a href="https://github.com/zebra-rs/marginal-releases/releases">github.com/zebra-rs/marginal-releases</a>, with a signature next to it. If a link here does not work, that page always has the current release.</p>
   </div>
 </section>
 
@@ -133,5 +146,93 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  'use strict';
+  // Detect the visitor's platform, then ask GitHub for the latest release
+  // and point every file link at its asset. Without JS, or if the request
+  // fails, every link goes to the releases page instead.
+  var API = 'https://api.github.com/repos/zebra-rs/marginal-releases/releases/latest';
+  var RELEASES = 'https://github.com/zebra-rs/marginal-releases/releases';
+  var MATCH = {
+    'dmg': /\.dmg$/i,
+    'exe': /-setup\.exe$/i,
+    'msi': /\.msi$/i,
+    'appimage-x64': /_amd64\.AppImage$/i,
+    'deb-x64': /_amd64\.deb$/i,
+    'rpm-x64': /\.x86_64\.rpm$/i,
+    'appimage-arm64': /_aarch64\.AppImage$/i,
+    'deb-arm64': /_arm64\.deb$/i,
+    'rpm-arm64': /\.aarch64\.rpm$/i
+  };
+  var LABEL = { mac: 'macOS', win: 'Windows', linux: 'Linux' };
+  var PRIMARY = { mac: 'dmg', win: 'exe', 'linux-x64': 'appimage-x64', 'linux-arm64': 'appimage-arm64' };
+
+  function detect() {
+    var uad = navigator.userAgentData;
+    var p = (uad && uad.platform) || navigator.platform || '';
+    var ua = navigator.userAgent || '';
+    var os = null;
+    if (/iphone|ipad|ipod|android/i.test(ua)) os = null;
+    else if (/mac/i.test(p)) os = 'mac';
+    else if (/win/i.test(p)) os = 'win';
+    else if (/linux|x11|cros/i.test(p) || /linux|x11/i.test(ua)) os = 'linux';
+    var arch = /aarch64|arm64|armv8/i.test(ua + ' ' + p) ? 'arm64' : 'x64';
+    return { os: os, arch: arch };
+  }
+
+  function mb(bytes) { return (bytes / 1048576).toFixed(bytes < 10485760 ? 1 : 0) + ' MB'; }
+
+  var $ = function (id) { return document.getElementById(id); };
+  var who = detect();
+  var key = who.os === 'linux' ? 'linux-' + who.arch : who.os;
+  var primaryMatch = key ? PRIMARY[key] : null;
+
+  if (who.os) {
+    $('rec-title').textContent = 'Marginal for ' + LABEL[who.os] + (who.os === 'linux' ? ' (' + (who.arch === 'arm64' ? 'aarch64' : 'x86_64') + ')' : '');
+    var card = document.querySelector('.platform[data-os="' + who.os + '"]');
+    if (card) card.classList.add('recommended');
+    var btn = $('rec-btn');
+    btn.hidden = false;
+    btn.textContent = 'Download for ' + LABEL[who.os];
+    btn.href = RELEASES + '/latest';
+  } else {
+    $('rec-k').textContent = 'Downloads';
+  }
+
+  if (!window.fetch) return;
+  fetch(API, { headers: { 'Accept': 'application/vnd.github+json' } })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (rel) {
+      var assets = rel.assets || [];
+      var found = {};
+      Object.keys(MATCH).forEach(function (k) {
+        for (var i = 0; i < assets.length; i++) {
+          if (MATCH[k].test(assets[i].name)) { found[k] = assets[i]; break; }
+        }
+      });
+      document.querySelectorAll('a[data-match]').forEach(function (a) {
+        var asset = found[a.getAttribute('data-match')];
+        if (!asset) return;
+        a.href = asset.browser_download_url;
+        a.title = asset.name;
+        a.querySelector('.size').textContent = mb(asset.size);
+      });
+      var version = (rel.tag_name || '').replace(/^v/, '') || rel.name;
+      var date = rel.published_at ? new Date(rel.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+      $('rec-meta').textContent = 'Version ' + version + (date ? ', released ' + date : '');
+      var primary = primaryMatch && found[primaryMatch];
+      if (primary) {
+        var btn = $('rec-btn');
+        btn.href = primary.browser_download_url;
+        btn.textContent = 'Download for ' + LABEL[who.os] + ' · ' + mb(primary.size);
+        btn.setAttribute('download', '');
+      }
+    })
+    .catch(function () {
+      $('rec-meta').textContent = 'Could not reach GitHub for the latest version. The releases page has every build.';
+    });
+})();
+</script>
 </body>
 </html>

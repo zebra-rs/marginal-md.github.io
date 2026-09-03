@@ -26,12 +26,18 @@ Claims that must stay true on every page:
 - No invented artifacts, sizes, package managers, or signing claims.
   Windows is *not* Authenticode-signed; macOS is notarized by `release.yml`.
 
-## Download links are intentionally dead-ended
+## Download links
 
-`zebra-rs/marginal` is **private** with **no tags/releases**; its
-`release.yml` drafts a GitHub release on a `v*` tag. Until a release (or a
-public mirror) exists, `download.html` says "being prepared" and links
-nothing. Wire real URLs when the first release ships.
+Builds are public releases on **`zebra-rs/marginal-releases`** (the app
+source stays private). `download.html` detects the visitor's OS and
+architecture, asks the GitHub API for the latest release at page load
+(the site's one external request; the API allows any origin, 60 requests
+an hour per IP), and points each file link at the matching asset by name
+pattern (`_universal.dmg`, `-setup.exe`, `.msi`, `_amd64`/`_aarch64`
+AppImage, `_amd64`/`_arm64` deb, `.x86_64`/`.aarch64` rpm). Without JS,
+or if the request fails, every link falls back to the releases page, and
+an "All releases on GitHub" button is always shown. If asset names change
+on the release side, the patterns in `download.html` must follow.
 
 ## The manual (`docs/`)
 
@@ -95,8 +101,9 @@ to `_site/docs/` by the workflow, not to the artifact root.
   inkdrop.app): `index.html`, `pricing.html`, `download.html`, `blog.html`
   (the launch post, source `mark.md`), `404.html`, plus the manual under
   `docs/`.
-  Plain HTML/CSS, shared styles in `assets/style.css`, no external
-  requests, no JS beyond the `?theme=` hook. Feature screenshots in
+  Plain HTML/CSS, shared styles in `assets/style.css`; the only external
+  request is the download page's GitHub API call, and the only JS is the
+  theme switch (`assets/site.js`) and that download logic. Feature screenshots in
   `assets/shots/` are WebP copies of the manual's shots (see README);
   regenerate them when the manual's are reshot. The site is public: the
   password gate (and the hashed directory holding the old design) was

@@ -6,7 +6,8 @@ The Marginal marketing site, served by GitHub Pages at **https://marginal.md**
 ## Layout
 
 - `index.html`, `pricing.html`, `download.html`, `blog.html`, `404.html` — the site:
-  hand-baked static HTML, no framework, no external requests. Shared styles
+  hand-baked static HTML, no framework; the only external request is the
+  download page asking the GitHub API for the latest release. Shared styles
   in `assets/style.css` (tokens mirror the app's `marginal-light` /
   `marginal-dark` themes; the vermilion comes from the app icon).
   `assets/top.png` is the hero screenshot; `assets/shots/` holds the WebP
